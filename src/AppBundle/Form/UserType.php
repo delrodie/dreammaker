@@ -48,11 +48,8 @@ class UserType extends AbstractType
             ->add('roles', ChoiceType::class, array(
               'choices' => array(
                 'UTILISATEUR '  => 'ROLE_USER',
+                'EDITEUR '  => 'ROLE_EDITEUR',
                 'ADMINISTRATEUR '  => 'ROLE_ADMIN',
-              ),
-              'attr'  => array(
-                  'class' => 'form-control',
-                  'autocomplete'  => 'off'
               ),
               'multiple'  => true,
               'expanded'  => true

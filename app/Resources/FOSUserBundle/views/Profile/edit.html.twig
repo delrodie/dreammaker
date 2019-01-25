@@ -1,5 +1,15 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "backend.html.twig" %}
 
-{% block fos_user_content %}
+{% block title %}{{ parent() }} Mise a jour du profil {% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<h1>Mise a jour du profil</h1>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+			<li class="breadcrumb-item"><a href="{{ absolute_url(path('admin_user_index'))}}">Utilisateur</a></li>
+			<li class="breadcrumb-item active">Modification </li>
+		</ol>
+	</section>
 {% include "@FOSUser/Profile/edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% endblock %}

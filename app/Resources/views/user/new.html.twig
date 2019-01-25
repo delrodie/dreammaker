@@ -1,16 +1,78 @@
-{% extends 'base.html.twig' %}
+{% extends 'backend.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des utilistateurs{% endblock %}
 
 {% block body %}
-    <h1>User creation</h1>
+    <section class="content-header">
+        <h1>Gestion des utilisateurs</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('admin_user_index'))}}">Utilisateur</a></li>
+            <li class="breadcrumb-item active">Enregistrement </li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="box box-warning">
+                <div class="box-header text-right">
+                    <a href="{{ absolute_url(path('admin_user_index'))}}" class="btn btn-social btn-primary"><i class="fa fa-list"></i>Liste des utilisateurs</a>
+                </div>
+                <div class="box-body">
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            {{ form_start(form, {'attr':{'class':'form-horizontal'}}) }}
+                            <div class="form-group row">
+                                <label class="col-sm-4 control-label text-right">Nom Utilisateur</label>
+                                <div class="col-sm-8">
+                                    {{ form_widget(form.username)}}
+                                    <span class="help-block">{{ form_errors(form.username)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 control-label text-right">Adresse Email</label>
+                                <div class="col-sm-8">
+                                    {{ form_widget(form.email)}}
+                                    <span class="help-block">{{ form_errors(form.email)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 control-label text-right">Mot de passe</label>
+                                <div class="col-sm-8">
+                                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder' : 'Mot de passe'}})}}
+                                    <span class="help-block">{{ form_errors(form.plainPassword.first)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 control-label text-right">Répétez le mot de passe</label>
+                                <div class="col-sm-8">
+                                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder' : 'Répétez le mot de passe'}})}}
+                                    <span class="help-block">{{ form_errors(form.plainPassword.first)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="appbundle_user_roles" class="col-sm-4 control-label text-right">Roles</label>
+                                <div class="checkbox col-sm-2">
+                                    {{ form_widget(form.roles)}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4 control-label text-right"></div>
+                                <div class="checkbox col-sm-2">
+                                    {{ form_widget(form.enabled)}}
+                                    <label for="appbundle_user_enabled">Activé</label>
+                                </div>
+                            </div>
+                            {{ form_widget(form) }}
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-default">Annuler</button>
+                                <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_user_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}

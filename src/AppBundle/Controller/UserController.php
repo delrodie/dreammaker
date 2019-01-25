@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
+        $users = $em->getRepository('AppBundle:User')->findListASC();
 
         return $this->render('user/index.html.twig', array(
             'users' => $users,
@@ -46,10 +46,13 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $user->setEnabled(true);
+            $encoder =$this->container->get('security.password_encoder');
+            $encoded = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($encoded);
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('admin_user_show', array('id' => $user->getId()));
+            return $this->redirectToRoute('admin_user_index');
         }
 
         return $this->render('user/new.html.twig', array(
@@ -92,9 +95,12 @@ class UserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $encoder =$this->container->get('security.password_encoder');
+            $encoded = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($encoded);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_user_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('admin_user_index');
         }
 
         return $this->render('user/edit.html.twig', array(

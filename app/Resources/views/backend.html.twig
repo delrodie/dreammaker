@@ -85,7 +85,7 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col text-left">
-                    <a href="#">Profile</a>
+                    <a href="{{ absolute_url(path("fos_user_profile_edit")) }}">Profile</a>
                   </div>
                   <div class="col text-left">
                     <a href="{{ absolute_url(path('fos_user_security_logout'))}}">Deconnexion</a>
@@ -136,7 +136,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-user-lock"></i> parametrage</a></li>
+            <li><a href="{{ absolute_url(path('fos_user_profile_edit')) }}"><i class="fa fa-user-lock"></i> parametrage</a></li>
             <li><a href="#"><i class="fa fa-newspaper"></i> activites</a></li>
           </ul>
         </li>
