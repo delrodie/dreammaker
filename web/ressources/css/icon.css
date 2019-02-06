@@ -1,0 +1,72 @@
+.acheter-album {
+    margin-right: 200px;
+    padding-right: 200px;
+}
+.acheter-album > a {
+    display: inline-block;
+    margin-right: 10px;
+}
+a.vente > div#spotify{
+    background-image: url("https://img.icons8.com/material/40/000000/spotify.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+a.vente:hover > div#spotify{
+    background-image: url("https://img.icons8.com/color/40/000000/spotify.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+a.vente > div#deezer{
+    background-image: url("https://img.icons8.com/material/40/000000/deezer.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+a.vente:hover > div#deezer{
+    background-image: url("https://img.icons8.com/color/40/000000/deezer.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+a.vente > div#itunes{
+    background-image: url("https://img.icons8.com/ios-glyphs/40/000000/itunes.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+a.vente:hover > div#itunes{
+    background-image: url("https://img.icons8.com/color/40/000000/itunes.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+a.vente > div#googleplay{
+    background-image: url("https://img.icons8.com/material/40/000000/google-play.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+a.vente:hover > div#googleplay{
+    background-image: url("https://img.icons8.com/color/40/000000/google-play.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+a.vente > div#amazon {
+    background-image: url("https://img.icons8.com/material/40/000000/amazon.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+a.vente:hover > div#amazon {
+    background-image: url("https://img.icons8.com/color/40/000000/amazon.png");
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}

@@ -1,58 +1,13 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Bases list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libelle</th>
-                <th>Libelle</th>
-                <th>Description</th>
-                <th>Statut</th>
-                <th>Slug</th>
-                <th>Publiepar</th>
-                <th>Modifiepar</th>
-                <th>Publiele</th>
-                <th>Modifiele</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for base in bases %}
-            <tr>
-                <td><a href="{{ path('base_show', { 'id': base.id }) }}">{{ base.id }}</a></td>
-                <td>{{ base.libelle }}</td>
-                <td>
-                  <img src="{{ asset('uploads/'~ base.imageName) | imagine_filter('base_thumb_w') }}" alt="{{ base.libelle }}" />
-
-                </td>
-                <td>{{ base.description }}</td>
-                <td>{% if base.statut %}Yes{% else %}No{% endif %}</td>
-                <td>{{ base.slug }}</td>
-                <td>{{ base.publiePar }}</td>
-                <td>{{ base.modifiePar }}</td>
-                <td>{{ base.publieLe|date('d-m-Y H:i:s') }}</td>
-                <td>{{ base.modifieLe|date('d-m-Y H:i:s') }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('base_show', { 'id': base.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('base_edit', { 'id': base.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('base_new') }}">Create a new base</a>
-        </li>
-    </ul>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
