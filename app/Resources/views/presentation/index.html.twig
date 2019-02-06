@@ -1,0 +1,85 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}Backoffice : presentation{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>presentation</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="#">Presentation</a></li>
+            <li class="breadcrumb-item active">presentation</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        {% if presentations %}
+            {% for presentation in presentations %}
+                <div class="box-header text-right">
+                    <a href="{{ absolute_url(path('backend_presentation_edit', {'slug': presentation.slug }))}}" class="btn btn-social btn-primary"><i class="fa fa-edit"></i>Modifier la presentation</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="box-header text-right">
+                <a href="{{ absolute_url(path('backend_presentation_new'))}}" class="btn btn-social btn-primary"><i class="fa fa-plus"></i>Rediger la presentation</a>
+            </div>
+        {% endif %}
+        {% for presentation in presentations %}
+
+            <div class="row">
+                <div class="col-xl-4 col-lg-5">
+
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            {% if (presentation.imageName) %}
+                                <img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="{{ vich_uploader_asset(presentation, 'imageFile') }}" alt="{{ presentation.titre }}">
+                            {% else %}
+                                <img src="{{ absolute_url(asset('ressources/images/logo.jpg')) }}" alt="" class="profile-user-img rounded-circle img-fluid mx-auto d-block">
+                            {% endif %}
+                            <h3 class="profile-username text-center">{{ presentation.titre }}</h3>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="profile-user-info">
+                                        <p>Adresse Email </p>
+                                        <h6 class="margin-bottom">{{ presentation.email }}</h6>
+                                        <p>Adresse</p>
+                                        <h6 class="margin-bottom text-justify">
+                                            {{ presentation.resume|raw }}
+                                        </h6>
+                                        <p class="margin-bottom">Social Profile</p>
+                                        <div class="user-social-acount">
+                                            <a href="https://facebook.com/{{ presentation.facebook }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-facebook"><i class="fab fa-facebook-f"></i></button></a>
+                                            <a href="https://twitter.com/{{ presentation.twitter }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-twitter"><i class="fab fa-twitter"></i></button></a>
+                                            <a href="https://linkeded.com/{{ presentation.facebook }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-linkedin"><i class="fab fa-linkedin-in"></i></button></a>
+                                            <a href="https://youtube.com/{{ presentation.facebook }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-youtube"><i class="fab fa-youtube"></i></button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-xl-8 col-lg-7">
+                    <div class="nav-tabs-custom">
+
+                        <div class="tab-content">
+
+                            {{ presentation.contenu|raw }}
+
+                        </div>
+                        <!-- /.tab-content -->
+                    </div>
+                    <!-- /.nav-tabs-custom -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        {% endfor %}
+
+    </section>
+{% endblock %}

@@ -5409,6 +5409,17 @@ table.dataTable thead .sorting:after {
     background-color: #1295bf;
     border-color: rgba(0, 0, 0, .2);
 }
+
+.btn-youtube {
+    color: #fff;
+    background-color: #f20c0f;
+    border-color: rgba(0, 0, 0, .2);
+}
+.btn-youtue.active, .btn-youtube.focus, .btn-youtube:active, .btn-youtube:focus, .btn-youtube:hover, .show>.dropdown-toggle.btn-youtube {
+    color: #fff;
+    background-color: #bb0000;
+    border-color: rgba(0, 0, 0, .2);
+}
 .btn-vimeo .badge {
     color: #1ab7ea;
     background-color: #fff;

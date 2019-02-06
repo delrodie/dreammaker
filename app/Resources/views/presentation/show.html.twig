@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Presentation</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ presentation.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ presentation.titre }}</td>
+            </tr>
+            <tr>
+                <th>Resume</th>
+                <td>{{ presentation.resume }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ presentation.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ presentation.tags }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if presentation.statut %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Imagename</th>
+                <td>{{ presentation.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Imagesize</th>
+                <td>{{ presentation.imageSize }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if presentation.updatedAt %}{{ presentation.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ presentation.slug }}</td>
+            </tr>
+            <tr>
+                <th>Publiepar</th>
+                <td>{{ presentation.publiePar }}</td>
+            </tr>
+            <tr>
+                <th>Modifiepar</th>
+                <td>{{ presentation.modifiePar }}</td>
+            </tr>
+            <tr>
+                <th>Publiele</th>
+                <td>{{ presentation.publieLe }}</td>
+            </tr>
+            <tr>
+                <th>Modifiele</th>
+                <td>{{ presentation.modifieLe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('backend_presentation_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('backend_presentation_edit', { 'id': presentation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
