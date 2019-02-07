@@ -1,21 +1,21 @@
 {% extends 'backend.html.twig' %}
 
-{% block title %}{{ parent() }} Gestion des services{% endblock %}
+{% block title %}{{ parent() }} Gestion des actualites{% endblock %}
 
 {% block body %}
     <section class="content-header">
-        <h1>Gestion des services</h1>
+        <h1>Gestion des actualites</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_service_index'))}}">service</a></li>
-            <li class="breadcrumb-item active">Ajout</li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_actualite_index'))}}">actualite</a></li>
+            <li class="breadcrumb-item active">Enregistrement</li>
         </ol>
     </section>
     <section class="content">
         <div class="row">
             <div class="box box-warning">
                 <div class="box-header text-right">
-                    <a href="{{ absolute_url(path('backend_service_index'))}}" class="btn btn-social btn-primary"><i class="fa fa-list"></i>Liste des services</a>
+                    <a href="{{ absolute_url(path('backend_actualite_index'))}}" class="btn btn-social btn-primary"><i class="fa fa-list"></i>Liste des actualités</a>
                 </div>
                 <div class="box-body">
                     <div class="row justify-content-center">
@@ -52,7 +52,7 @@
                                 <div class="col-sm-12 control-label text-left"></div>
                                 <div class="checkbox col-sm-12">
                                     {{ form_widget(form.statut)}}
-                                    <label for="appbundle_service_statut">Activé</label>
+                                    <label for="appbundle_actualite_statut">Activé</label>
                                 </div>
                             </div>
                             {{ form_widget(form) }}
