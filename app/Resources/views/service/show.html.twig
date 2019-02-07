@@ -1,0 +1,59 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}{{ parent () }} {{ service.titre }}{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>{{ service.titre }}</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_service_index'))}}">services</a></li>
+            <li class="breadcrumb-item active">{{ service.titre }}</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="box box-warning">
+            <div class="box-header text-right">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{{ absolute_url(path('backend_service_edit', {'slug': service.slug})) }}" >
+                        <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Modifier</button>
+                    </a>
+                    <a href="{{ absolute_url(path('backend_service_index')) }}" >
+                        <button type="button" class="btn btn-default"><i class="fa fa-list"></i> Liste des services</button>
+                    </a>
+
+                    {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Êtes-vous sur de vouloir supprimer ce service ?");'}}) }}
+                    <button type="submit" value="Supprimer" class="btn btn-danger">
+                        <i class="fa fa-trash"></i> Supprimer
+                    </button>
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="box box-default">
+                        <img class="" src="{{ vich_uploader_asset(service, 'imageFile') }}" alt="{{ service.titre }}" style="float: left">
+                        <div class="box-body">
+                            <h4 class="card-title">
+                                {% if service.statut %}
+                                    <span class="badge badge-success">Actif</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Désactivé</span>
+                                {% endif %}
+                                {{ service.titre }}
+                            </h4>
+                            <p class="card-text">{{ service.contenu|raw }}</p>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+            </div>
+
+    </section>
+{% endblock %}
