@@ -1,0 +1,60 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des partenaires{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>Gestion des partenaires</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_partenaire_index'))}}">partenaire</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="box box-warning">
+                <div class="box-header text-right">
+                    <a href="{{ absolute_url(path('backend_partenaire_index'))}}" class="btn btn-social btn-primary"><i class="fa fa-list"></i>Liste des partenaires</a>
+                </div>
+                <div class="box-body">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            {{ form_start(edit_form, {'attr':{'class':'form-horizontal'}}) }}
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Nom</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.nom)}}
+                                    <span class="help-block">{{ form_errors(edit_form.nom)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Telecharger l'illustration</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.imageFile)}}
+                                    <span class="help-block">{{ form_errors(edit_form.imageFile)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 control-label text-left"></div>
+                                <div class="checkbox col-sm-12">
+                                    {{ form_widget(edit_form.statut)}}
+                                    <label for="appbundle_partenaire_statut">Activé</label>
+                                </div>
+                            </div>
+                            {{ form_widget(edit_form) }}
+                            <div class="box-footer text-right">
+                                <a type="reset" class="btn btn-default">Annuler</a>
+                                <button type="submit" class="btn btn-info">Modifier</button>
+                            </div>
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
