@@ -1,0 +1,145 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}Gestion des artistes{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>Gestion des artistes</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_artiste_index'))}}">Artiste</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="box box-warning">
+                <div class="box-header text-right">
+                    <a href="{{ absolute_url(path('backend_artiste_index'))}}" class="btn btn-social btn-primary"><i class="fa fa-list"></i>La liste des artistes</a>
+                </div>
+                <div class="box-body">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            {{ form_start(edit_form, {'attr':{'class':'form-horizontal'}}) }}
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Pseudonyme</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.pseudonyme)}}
+                                    <span class="help-block">{{ form_errors(edit_form.pseudonyme)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Nom & prenoms</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.nom)}}
+                                    <span class="help-block">{{ form_errors(edit_form.nom)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-12 control-label text-left">Biographie</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.biographie)}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Genre</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.genre)}}
+                                    <span class="help-block">{{ form_errors(edit_form.genre)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Contact Manager</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.manager)}}
+                                    <span class="help-block">{{ form_errors(edit_form.manager)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Email</label>
+                                    {{ form_widget(edit_form.email)}}
+                                    <span class="help-block">{{ form_errors(edit_form.email)}}</span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Site web</label>
+                                    {{ form_widget(edit_form.website)}}
+                                    <span class="help-block">{{ form_errors(edit_form.website)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Facebook</label>
+                                    {{ form_widget(edit_form.facebook)}}
+                                    <span class="help-block">{{ form_errors(edit_form.facebook)}}</span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Twitter</label>
+                                    {{ form_widget(edit_form.twitter)}}
+                                    <span class="help-block">{{ form_errors(edit_form.twitter)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Youtube</label>
+                                    {{ form_widget(edit_form.youtube)}}
+                                    <span class="help-block">{{ form_errors(edit_form.youtube)}}</span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Instagram</label>
+                                    {{ form_widget(edit_form.instagram)}}
+                                    <span class="help-block">{{ form_errors(edit_form.instagram)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Telecharger l'illustration</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.imageFile)}}
+                                    <span class="help-block">{{ form_errors(edit_form.imageFile)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 control-label text-left"></div>
+                                <div class="checkbox col-sm-12">
+                                    {{ form_widget(edit_form.statut)}}
+                                    <label for="appbundle_artiste_statut">Activé</label>
+                                </div>
+                            </div>
+                            {{ form_widget(edit_form) }}
+                            <div class="box-footer">
+                                <a href="{{ absolute_url(path('backend_artiste_index')) }}" class="btn btn-default">Annuler</a>
+                                <button type="submit" class="btn btn-info pull-right">Modifier</button>
+                            </div>
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent()}}
+    {% stylesheets
+        'backoffice/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css'
+        'backoffice/tags/tagsinput.css'
+        filter='cssrewrite' output='backend/css/editeur.css'
+    %}
+        <link rel="stylesheet" href="{{ absolute_url(asset_url)}}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent()}}
+    {% javascripts
+        'backoffice/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js'
+        'backoffice/js/pages/editor.js'
+        'backoffice/tags/tagsinput.js'
+        output='backend/js/editeur.js'
+    %}
+        <script src="{{ absolute_url(asset_url)}}"></script>
+
+    {% endjavascripts %}
+{% endblock %}
