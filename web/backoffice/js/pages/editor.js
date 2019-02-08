@@ -10,6 +10,7 @@
     $('#appbundle_presentation_contenu').wysihtml5();
     $('#appbundle_service_contenu').wysihtml5();
     $('#appbundle_actualite_contenu').wysihtml5();
+    $('#appbundle_event_contenu').wysihtml5();
     $('.contenu').wysihtml5();
 	
   });

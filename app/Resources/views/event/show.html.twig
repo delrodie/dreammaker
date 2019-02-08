@@ -1,0 +1,59 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}{{ parent () }} {{ event.titre }}{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>Gestion des actualités</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_event_index'))}}">events</a></li>
+            <li class="breadcrumb-item active">{{ event.titre }}</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="box box-warning">
+            <div class="box-header text-right">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{{ absolute_url(path('backend_event_edit', {'slug': event.slug})) }}" >
+                        <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Modifier</button>
+                    </a>
+                    <a href="{{ absolute_url(path('backend_event_index')) }}" >
+                        <button type="button" class="btn btn-default"><i class="fa fa-list"></i> Liste des events</button>
+                    </a>
+
+                    {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Êtes-vous sur de vouloir supprimer cet évènement ?");'}}) }}
+                    <button type="submit" value="Supprimer" class="btn btn-danger">
+                        <i class="fa fa-trash"></i> Supprimer
+                    </button>
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="box box-default">
+                        <img class="" src="{{ vich_uploader_asset(event, 'imageFile') }}" alt="{{ event.titre }}" style="float: left; padding-right: 15px;">
+                        <div class="box-body">
+                            <span class="badge badge-primary pull-right">{{ event.dateEvent|date('d M Y') }}</span>
+                            <h4 class="card-title">
+                                {% if event.statut %}
+                                    <span class="badge badge-success">Actif</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Désactivé</span>
+                                {% endif %}{{ event.titre }}
+                            </h4>
+                            <p class="card-text">{{ event.contenu|raw }}</p>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+            </div>
+
+    </section>
+{% endblock %}

@@ -295,3 +295,8 @@
     -webkit-align-items: center;
     align-items: center;
 }
+
+.footer-backoffice a.backoffice{
+    color: #48627e;
+    text-decoration: none;
+}
