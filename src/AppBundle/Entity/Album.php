@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Artiste
+ * Album
  *
- * @ORM\Table(name="artiste")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ArtisteRepository")
+ * @ORM\Table(name="album")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AlbumRepository")
  * @Vich\Uploadable
  */
-class Artiste
+class Album
 {
     /**
      * @var int
@@ -28,86 +28,114 @@ class Artiste
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
-    private $nom;
+    private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudonyme", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255)
      */
-    private $pseudonyme;
+    private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="biographie", type="text")
+     * @ORM\Column(name="piste", type="string", length=255, nullable=true, options={"default": 0})
      */
-    private $biographie;
+    private $piste;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="resume", type="text", nullable=true)
+     * @ORM\Column(name="compositeur", type="string", length=255, nullable=true)
      */
-    private $resume;
+    private $compositeur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="manager", type="string", length=255, nullable=true)
+     * @ORM\Column(name="choeur", type="string", length=255, nullable=true)
      */
-    private $manager;
+    private $choeur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @ORM\Column(name="arrangeur", type="string", length=255, nullable=true)
      */
-    private $email;
+    private $arrangeur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="website", type="string", length=255, nullable=true)
+     * @ORM\Column(name="producteur", type="string", length=255, nullable=true)
      */
-    private $website;
+    private $producteur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="genre", type="string", length=255, nullable=true)
+     * @ORM\Column(name="mixage", type="string", length=255, nullable=true)
      */
-    private $genre;
+    private $mixage;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="youtube", type="string", length=255, nullable=true)
+     * @ORM\Column(name="master", type="string", length=255, nullable=true)
      */
-    private $youtube;
+    private $master;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     * @ORM\Column(name="distribution", type="string", length=255, nullable=true)
      */
-    private $facebook;
+    private $distribution;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     * @ORM\Column(name="spotify", type="string", length=255, nullable=true)
      */
-    private $twitter;
+    private $spotify;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="instagram", type="string", length=255, nullable=true)
+     * @ORM\Column(name="deezer", type="string", length=255, nullable=true)
      */
-    private $instagram;
+    private $deezer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itunes", type="string", length=255, nullable=true)
+     */
+    private $itunes;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="googlePlay", type="string", length=255, nullable=true)
+     */
+    private $googlePlay;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="amazon", type="string", length=255, nullable=true)
+     */
+    private $amazon;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="iftypay", type="string", length=255, nullable=true)
+     */
+    private $iftypay;
 
     /**
      * @var bool
@@ -117,21 +145,15 @@ class Artiste
     private $statut;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="oeuvre", type="integer", nullable=true, options={"defaul": 0})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Artiste", inversedBy="albums")
+     * @ORM\JoinColumn(name="artiste_id", referencedColumnName="id")
      */
-    private $oeuvre;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Album", mappedBy="artiste")
-     */
-    private $albums;
+    private $artiste;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="artiste_image", fileNameProperty="imageName", size="imageSize", nullable=true)
+     * @Vich\UploadableField(mapping="album_image", fileNameProperty="imageName", size="imageSize", nullable=true)
      *
      * @var File
      */
@@ -161,7 +183,7 @@ class Artiste
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"pseudonyme","nom"})
+     * @Gedmo\Slug(fields={"titre"})
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
@@ -203,7 +225,7 @@ class Artiste
      *
      * @param \DateTime $updatedAt
      *
-     * @return Partenaire
+     * @return Album
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -231,7 +253,7 @@ class Artiste
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
-     * @return Partenaire
+     * @return Album
      */
     public function setImageFile(File $image = null)
     {
@@ -256,6 +278,7 @@ class Artiste
 
 
 
+
     /**
      * Get id
      *
@@ -267,267 +290,363 @@ class Artiste
     }
 
     /**
-     * Set nom
+     * Set titre
      *
-     * @param string $nom
+     * @param string $titre
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setNom($nom)
+    public function setTitre($titre)
     {
-        $this->nom = $nom;
+        $this->titre = $titre;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get titre
      *
      * @return string
      */
-    public function getNom()
+    public function getTitre()
     {
-        return $this->nom;
+        return $this->titre;
     }
 
     /**
-     * Set pseudonyme
+     * Set auteur
      *
-     * @param string $pseudonyme
+     * @param string $auteur
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setPseudonyme($pseudonyme)
+    public function setAuteur($auteur)
     {
-        $this->pseudonyme = $pseudonyme;
+        $this->auteur = $auteur;
 
         return $this;
     }
 
     /**
-     * Get pseudonyme
+     * Get auteur
      *
      * @return string
      */
-    public function getPseudonyme()
+    public function getAuteur()
     {
-        return $this->pseudonyme;
+        return $this->auteur;
     }
 
     /**
-     * Set biographie
+     * Set compositeur
      *
-     * @param string $biographie
+     * @param string $compositeur
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setBiographie($biographie)
+    public function setCompositeur($compositeur)
     {
-        $this->biographie = $biographie;
+        $this->compositeur = $compositeur;
 
         return $this;
     }
 
     /**
-     * Get biographie
+     * Get compositeur
      *
      * @return string
      */
-    public function getBiographie()
+    public function getCompositeur()
     {
-        return $this->biographie;
+        return $this->compositeur;
     }
 
     /**
-     * Set manager
+     * Set choeur
      *
-     * @param string $manager
+     * @param string $choeur
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setManager($manager)
+    public function setChoeur($choeur)
     {
-        $this->manager = $manager;
+        $this->choeur = $choeur;
 
         return $this;
     }
 
     /**
-     * Get manager
+     * Get choeur
      *
      * @return string
      */
-    public function getManager()
+    public function getChoeur()
     {
-        return $this->manager;
+        return $this->choeur;
     }
 
     /**
-     * Set email
+     * Set arrangeur
      *
-     * @param string $email
+     * @param string $arrangeur
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setEmail($email)
+    public function setArrangeur($arrangeur)
     {
-        $this->email = $email;
+        $this->arrangeur = $arrangeur;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Get arrangeur
      *
      * @return string
      */
-    public function getEmail()
+    public function getArrangeur()
     {
-        return $this->email;
+        return $this->arrangeur;
     }
 
     /**
-     * Set website
+     * Set producteur
      *
-     * @param string $website
+     * @param string $producteur
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setWebsite($website)
+    public function setProducteur($producteur)
     {
-        $this->website = $website;
+        $this->producteur = $producteur;
 
         return $this;
     }
 
     /**
-     * Get website
+     * Get producteur
      *
      * @return string
      */
-    public function getWebsite()
+    public function getProducteur()
     {
-        return $this->website;
+        return $this->producteur;
     }
 
     /**
-     * Set genre
+     * Set mixage
      *
-     * @param string $genre
+     * @param string $mixage
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setGenre($genre)
+    public function setMixage($mixage)
     {
-        $this->genre = $genre;
+        $this->mixage = $mixage;
 
         return $this;
     }
 
     /**
-     * Get genre
+     * Get mixage
      *
      * @return string
      */
-    public function getGenre()
+    public function getMixage()
     {
-        return $this->genre;
+        return $this->mixage;
     }
 
     /**
-     * Set youtube
+     * Set master
      *
-     * @param string $youtube
+     * @param string $master
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setYoutube($youtube)
+    public function setMaster($master)
     {
-        $this->youtube = $youtube;
+        $this->master = $master;
 
         return $this;
     }
 
     /**
-     * Get youtube
+     * Get master
      *
      * @return string
      */
-    public function getYoutube()
+    public function getMaster()
     {
-        return $this->youtube;
+        return $this->master;
     }
 
     /**
-     * Set facebook
+     * Set distribution
      *
-     * @param string $facebook
+     * @param string $distribution
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setFacebook($facebook)
+    public function setDistribution($distribution)
     {
-        $this->facebook = $facebook;
+        $this->distribution = $distribution;
 
         return $this;
     }
 
     /**
-     * Get facebook
+     * Get distribution
      *
      * @return string
      */
-    public function getFacebook()
+    public function getDistribution()
     {
-        return $this->facebook;
+        return $this->distribution;
     }
 
     /**
-     * Set twitter
+     * Set spotify
      *
-     * @param string $twitter
+     * @param string $spotify
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setTwitter($twitter)
+    public function setSpotify($spotify)
     {
-        $this->twitter = $twitter;
+        $this->spotify = $spotify;
 
         return $this;
     }
 
     /**
-     * Get twitter
+     * Get spotify
      *
      * @return string
      */
-    public function getTwitter()
+    public function getSpotify()
     {
-        return $this->twitter;
+        return $this->spotify;
     }
 
     /**
-     * Set instagram
+     * Set deezer
      *
-     * @param string $instagram
+     * @param string $deezer
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setInstagram($instagram)
+    public function setDeezer($deezer)
     {
-        $this->instagram = $instagram;
+        $this->deezer = $deezer;
 
         return $this;
     }
 
     /**
-     * Get instagram
+     * Get deezer
      *
      * @return string
      */
-    public function getInstagram()
+    public function getDeezer()
     {
-        return $this->instagram;
+        return $this->deezer;
+    }
+
+    /**
+     * Set itunes
+     *
+     * @param string $itunes
+     *
+     * @return Album
+     */
+    public function setItunes($itunes)
+    {
+        $this->itunes = $itunes;
+
+        return $this;
+    }
+
+    /**
+     * Get itunes
+     *
+     * @return string
+     */
+    public function getItunes()
+    {
+        return $this->itunes;
+    }
+
+    /**
+     * Set googlePlay
+     *
+     * @param string $googlePlay
+     *
+     * @return Album
+     */
+    public function setGooglePlay($googlePlay)
+    {
+        $this->googlePlay = $googlePlay;
+
+        return $this;
+    }
+
+    /**
+     * Get googlePlay
+     *
+     * @return string
+     */
+    public function getGooglePlay()
+    {
+        return $this->googlePlay;
+    }
+
+    /**
+     * Set amazon
+     *
+     * @param string $amazon
+     *
+     * @return Album
+     */
+    public function setAmazon($amazon)
+    {
+        $this->amazon = $amazon;
+
+        return $this;
+    }
+
+    /**
+     * Get amazon
+     *
+     * @return string
+     */
+    public function getAmazon()
+    {
+        return $this->amazon;
+    }
+
+    /**
+     * Set iftypay
+     *
+     * @param string $iftypay
+     *
+     * @return Album
+     */
+    public function setIftypay($iftypay)
+    {
+        $this->iftypay = $iftypay;
+
+        return $this;
+    }
+
+    /**
+     * Get iftypay
+     *
+     * @return string
+     */
+    public function getIftypay()
+    {
+        return $this->iftypay;
     }
 
     /**
@@ -535,7 +654,7 @@ class Artiste
      *
      * @param boolean $statut
      *
-     * @return Artiste
+     * @return Album
      */
     public function setStatut($statut)
     {
@@ -555,11 +674,35 @@ class Artiste
     }
 
     /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Album
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Set imageName
      *
      * @param string $imageName
      *
-     * @return Artiste
+     * @return Album
      */
     public function setImageName($imageName)
     {
@@ -583,7 +726,7 @@ class Artiste
      *
      * @param integer $imageSize
      *
-     * @return Artiste
+     * @return Album
      */
     public function setImageSize($imageSize)
     {
@@ -607,7 +750,7 @@ class Artiste
      *
      * @param string $slug
      *
-     * @return Artiste
+     * @return Album
      */
     public function setSlug($slug)
     {
@@ -631,7 +774,7 @@ class Artiste
      *
      * @param string $publiePar
      *
-     * @return Artiste
+     * @return Album
      */
     public function setPubliePar($publiePar)
     {
@@ -655,7 +798,7 @@ class Artiste
      *
      * @param string $modifiePar
      *
-     * @return Artiste
+     * @return Album
      */
     public function setModifiePar($modifiePar)
     {
@@ -679,7 +822,7 @@ class Artiste
      *
      * @param \DateTime $publieLe
      *
-     * @return Artiste
+     * @return Album
      */
     public function setPublieLe($publieLe)
     {
@@ -703,7 +846,7 @@ class Artiste
      *
      * @param \DateTime $modifieLe
      *
-     * @return Artiste
+     * @return Album
      */
     public function setModifieLe($modifieLe)
     {
@@ -723,91 +866,50 @@ class Artiste
     }
 
     /**
-     * Set resume
+     * Set artiste
      *
-     * @param string $resume
+     * @param \AppBundle\Entity\Artiste $artiste
      *
-     * @return Artiste
+     * @return Album
      */
-    public function setResume($resume)
+    public function setArtiste(\AppBundle\Entity\Artiste $artiste = null)
     {
-        $this->resume = $resume;
+        $this->artiste = $artiste;
 
         return $this;
     }
 
     /**
-     * Get resume
+     * Get artiste
+     *
+     * @return \AppBundle\Entity\Artiste
+     */
+    public function getArtiste()
+    {
+        return $this->artiste;
+    }
+
+    /**
+     * Set piste
+     *
+     * @param string $piste
+     *
+     * @return Album
+     */
+    public function setPiste($piste)
+    {
+        $this->piste = $piste;
+
+        return $this;
+    }
+
+    /**
+     * Get piste
      *
      * @return string
      */
-    public function getResume()
+    public function getPiste()
     {
-        return $this->resume;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->albums = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add album
-     *
-     * @param \AppBundle\Entity\Album $album
-     *
-     * @return Artiste
-     */
-    public function addAlbum(\AppBundle\Entity\Album $album)
-    {
-        $this->albums[] = $album;
-
-        return $this;
-    }
-
-    /**
-     * Remove album
-     *
-     * @param \AppBundle\Entity\Album $album
-     */
-    public function removeAlbum(\AppBundle\Entity\Album $album)
-    {
-        $this->albums->removeElement($album);
-    }
-
-    /**
-     * Get albums
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAlbums()
-    {
-        return $this->albums;
-    }
-
-    /**
-     * Set oeuvre
-     *
-     * @param integer $oeuvre
-     *
-     * @return Artiste
-     */
-    public function setOeuvre($oeuvre)
-    {
-        $this->oeuvre = $oeuvre;
-
-        return $this;
-    }
-
-    /**
-     * Get oeuvre
-     *
-     * @return integer
-     */
-    public function getOeuvre()
-    {
-        return $this->oeuvre;
+        return $this->piste;
     }
 }

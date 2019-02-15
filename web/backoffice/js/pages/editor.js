@@ -13,6 +13,7 @@
     $('#appbundle_event_contenu').wysihtml5();
     $('#appbundle_artiste_biographie').wysihtml5();
     $('.contenu').wysihtml5();
+    $('.select2').select2()
 	
   });
 

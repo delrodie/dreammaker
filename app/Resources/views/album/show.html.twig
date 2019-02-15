@@ -1,0 +1,173 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}Backoffice : Gestion des albums{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>Gestion des albums</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="#">album</a></li>
+            <li class="breadcrumb-item active">Affichage</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box-header text-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="{{ absolute_url(path('backend_album_edit', {'slug': album.slug})) }}" >
+                    <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Modifier</button>
+                </a>
+                <a href="{{ absolute_url(path('backend_album_index')) }}" >
+                    <button type="button" class="btn btn-default"><i class="fa fa-list"></i> Liste des albums</button>
+                </a>
+
+                {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Êtes-vous sur de vouloir supprimer cet album ?");'}}) }}
+                <button type="submit" value="Supprimer" class="btn btn-danger">
+                    <i class="fa fa-trash"></i> Supprimer
+                </button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-4 col-lg-5">
+
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        {% if (album.imageName) %}
+                            <img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="{{ vich_uploader_asset(album, 'imageFile') }}" alt="{{ album.titre }}">
+                        {% else %}
+                            <img src="{{ absolute_url(asset('ressources/images/logo.jpg')) }}" alt="" class="profile-user-img rounded-circle img-fluid mx-auto d-block">
+                        {% endif %}
+                        <h3 class="profile-username text-center">{{ album.titre }}({{ album.artiste.pseudonyme }})</h3>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="profile-user-info">
+                                    {% if (album.type) %}
+                                        <p>Type </p>
+                                        <h6 class="margin-bottom">
+                                            <a href="{{ album.type }}" target="_blank">{{ album.type }}</a>
+                                        </h6>
+                                    {% endif %}
+                                    {% if (album.spotify) %}
+                                        <p>Spotify </p>
+                                        <h6 class="margin-bottom">
+                                            <a href="{{ album.spotify }}" target="_blank">{{ album.spotify }}</a>
+                                        </h6>  
+                                    {% endif %}
+                                    {% if (album.deezer) %}
+                                        <p>Deezer </p>
+                                        <h6 class="margin-bottom">
+                                            <a href="{{ album.deezer }}" target="_blank">{{ album.deezer }}</a>
+                                        </h6>
+                                    {% endif %}
+                                    {% if (album.itunes) %}
+                                        <p>Itunes </p>
+                                        <h6 class="margin-bottom">
+                                            <a href="{{ album.itunes }}" target="_blank">{{ album.itunes }}</a>
+                                        </h6>
+                                    {% endif %}
+                                    {% if (album.googlePlay) %}
+                                        <p>Google Play </p>
+                                        <h6 class="margin-bottom">
+                                            <a href="{{ album.googlePlay }}" target="_blank">{{ album.googlePlay }}</a>
+                                        </h6>
+                                    {% endif %}
+                                    {% if (album.amazon) %}
+                                        <p>Amazon </p>
+                                        <h6 class="margin-bottom">
+                                            <a href="{{ album.amazon }}" target="_blank">{{ album.amazon }}</a>
+                                        </h6>
+                                    {% endif %}
+                                    {% if (album.iftypay) %}
+                                        <p>Notiplay </p>
+                                        <h6 class="margin-bottom">
+                                            <a href="{{ album.iftypay }}" target="_blank">{{ album.iftypay }}</a>
+                                        </h6>
+                                    {% endif %}
+                                    <p class="margin-bottom">Profile reseaux sociaux de l'artiste</p>
+                                    <div class="user-social-acount">
+                                        <a href="https://facebook.com/{{ album.artiste.facebook }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-facebook"><i class="fab fa-facebook-f"></i></button></a>
+                                        <a href="https://twitter.com/{{ album.artiste.twitter }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-twitter"><i class="fab fa-twitter"></i></button></a>
+                                        <a href="https://linkeded.com/{{ album.artiste.facebook }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-linkedin"><i class="fab fa-linkedin-in"></i></button></a>
+                                        <a href="https://youtube.com/{{ album.artiste.facebook }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-youtube"><i class="fab fa-youtube"></i></button></a>
+                                        <a href="https://instagram.com/{{ album.artiste.instagram }}" target="_blank"><button class="btn btn-circle btn-social-icon btn-instagram"><i class="fab fa-instagram"></i></button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-xl-8 col-lg-7">
+                <div class="nav-tabs-custom">
+
+                    <div class="tab-content">
+                        <div class="row">
+                            {% if (album.compositeur) %}
+                                <div class="col-md-6">
+                                    <label for="compositeur">Compositeur</label>
+                                    <input type="text" class="form-control" value="{{ album.compositeur }}" readonly>
+                                </div>
+                            {% endif %}
+                            {% if (album.choeur) %}
+                                <div class="col-md-6">
+                                    <label for="choeur">Choeur</label>
+                                    <input type="text" class="form-control" value="{{ album.choeur }}" readonly>
+                                </div>
+                            {% endif %}
+                            {% if (album.arrangeur) %}
+                                <div class="col-md-6">
+                                    <label for="arrangeur">Arrangeur</label>
+                                    <input type="text" class="form-control" value="{{ album.arrangeur }}" readonly>
+                                </div>
+                            {% endif %}
+                            {% if (album.producteur) %}
+                                <div class="col-md-6 top20">
+                                    <label for="producteur">Producteur</label>
+                                    <input type="text" class="form-control" value="{{ album.producteur }}" readonly>
+                                </div>
+                            {% endif %}
+                            {% if (album.mixage) %}
+                                <div class="col-md-6">
+                                    <label for="mixage">Mixage</label>
+                                    <input type="text" class="form-control" value="{{ album.mixage }}" readonly>
+                                </div>
+                            {% endif %}
+                            {% if (album.master) %}
+                                <div class="col-md-6">
+                                    <label for="master">Master</label>
+                                    <input type="text" class="form-control" value="{{ album.master }}" readonly>
+                                </div>
+                            {% endif %}
+                            {% if (album.distribution) %}
+                                <div class="col-md-6">
+                                    <label for="distribution">Distribution</label>
+                                    <input type="text" class="form-control" value="{{ album.distribution }}" readonly>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="nav-tabs-custom">
+                    <div role="tabpanel" class="tab-pane active" id="titre">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item"><span class="badge badge-primary pull-right">3:22</span><i class="fa fa-play-circle"></i> 01. My Baby</a>
+                            <a href="#" class="list-group-item"><span class=" badge badge-primary pull-right">2:45</span><i class="fa fa-play-circle"></i> 02. Mon rocher</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+    </section>
+{% endblock %}

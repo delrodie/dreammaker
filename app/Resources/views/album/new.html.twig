@@ -1,0 +1,182 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}Gestion de la album{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>Gestion de la album</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_album_index'))}}">Utilisateur</a></li>
+            <li class="breadcrumb-item active">Gestion de la album</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="box box-warning">
+                <div class="box-header text-right">
+                    <a href="{{ absolute_url(path('backend_album_index'))}}" class="btn btn-social btn-primary"><i class="fa fa-list"></i>La liste des albums</a>
+                </div>
+                <div class="box-body">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            {{ form_start(form, {'attr':{'class':'form-horizontal'}}) }}
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Artiste</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.artiste)}}
+                                    <span class="help-block">{{ form_errors(form.artiste)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Titre</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.titre)}}
+                                    <span class="help-block">{{ form_errors(form.titre)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-12 control-label text-left">Type</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.type)}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Compositeur</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.compositeur)}}
+                                    <span class="help-block">{{ form_errors(form.compositeur)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Choeur</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.choeur)}}
+                                    <span class="help-block">{{ form_errors(form.choeur)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Arrangeur</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.arrangeur)}}
+                                    <span class="help-block">{{ form_errors(form.arrangeur)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Producteur</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.producteur)}}
+                                    <span class="help-block">{{ form_errors(form.producteur)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Mixage</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.mixage)}}
+                                    <span class="help-block">{{ form_errors(form.mixage)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Master</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.master)}}
+                                    <span class="help-block">{{ form_errors(form.master)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Distribution</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.distribution)}}
+                                    <span class="help-block">{{ form_errors(form.distribution)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Spotify</label>
+                                    {{ form_widget(form.spotify)}}
+                                    <span class="help-block">{{ form_errors(form.spotify)}}</span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Deezer</label>
+                                    {{ form_widget(form.deezer)}}
+                                    <span class="help-block">{{ form_errors(form.deezer)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Itunes</label>
+                                    {{ form_widget(form.itunes)}}
+                                    <span class="help-block">{{ form_errors(form.itunes)}}</span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Google Play</label>
+                                    {{ form_widget(form.googlePlay)}}
+                                    <span class="help-block">{{ form_errors(form.googlePlay)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Amazon</label>
+                                    {{ form_widget(form.amazon)}}
+                                    <span class="help-block">{{ form_errors(form.amazon)}}</span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">NotiPlay</label>
+                                    {{ form_widget(form.iftypay)}}
+                                    <span class="help-block">{{ form_errors(form.iftypay)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Telecharger l'illustration</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.imageFile)}}
+                                    <span class="help-block">{{ form_errors(form.imageFile)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 control-label text-left"></div>
+                                <div class="checkbox col-sm-12">
+                                    {{ form_widget(form.statut)}}
+                                    <label for="appbundle_album_statut">Activé</label>
+                                </div>
+                            </div>
+                            {{ form_widget(form) }}
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-default">Annuler</button>
+                                <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent()}}
+    {% stylesheets
+        'backoffice/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css'
+		'backoffice/assets/vendor_components/select2/dist/css/select2.min.css'
+        'backoffice/tags/tagsinput.css'
+        filter='cssrewrite' output='backend/css/editeur.css'
+    %}
+        <link rel="stylesheet" href="{{ absolute_url(asset_url)}}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent()}}
+    {% javascripts
+        'backoffice/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js'
+		'backoffice/assets/vendor_components/select2/dist/js/select2.full.js'
+        'backoffice/js/pages/editor.js'
+        'backoffice/tags/tagsinput.js'
+        output='backend/js/editeur.js'
+    %}
+        <script src="{{ absolute_url(asset_url)}}"></script>
+
+    {% endjavascripts %}
+{% endblock %}

@@ -154,6 +154,24 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
 
+        artiste_image:
+            uri_prefix:         /uploads/artiste
+            upload_destination: '%kernel.root_dir%/../web/uploads/artiste'
+            namer: vich_uploader.namer_origname
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        album_image:
+            uri_prefix:         /uploads/album
+            upload_destination: '%kernel.root_dir%/../web/uploads/album'
+            namer: vich_uploader.namer_origname
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
 liip_imagine:
     resolvers:
         default:

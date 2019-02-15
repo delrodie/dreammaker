@@ -1,13 +1,13 @@
 {% extends 'backend.html.twig' %}
 
-{% block title %}{{ parent () }} Gestion des artistes{% endblock %}
+{% block title %}{{ parent () }} Gestion des albums{% endblock %}
 
 {% block body %}
     <section class="content-header">
-        <h1>Gestion des artistes</h1>
+        <h1>Gestion des albums</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_artiste_index'))}}">artistes</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_album_index'))}}">albums</a></li>
             <li class="breadcrumb-item active">Liste </li>
         </ol>
     </section>
@@ -17,32 +17,32 @@
 
         <div class="box box-warning">
             <div class="box-header text-right">
-                <a href="{{ absolute_url(path('backend_artiste_new'))}}" class="btn btn-social btn-primary"><i class="fa fa-plus"></i>Ajouter un artiste</a>
+                <a href="{{ absolute_url(path('backend_album_new'))}}" class="btn btn-social btn-primary"><i class="fa fa-plus"></i>Ajouter un album</a>
             </div>
 
             <div class="row">
-                {% for artiste in artistes %}
+                {% for album in albums %}
                     <div class="col-md-12 col-lg-3">
-                        <div class="box box-default" style="height: 600px">
-                            <img class="card-img-top img-responsive" src="{{ vich_uploader_asset(artiste, 'imageFile') }}" alt="{{ artiste.pseudonyme }}">
+                        <div class="box box-default" style="height: 450px">
+                            <img class="card-img-top img-responsive" src="{{ vich_uploader_asset(album, 'imageFile') }}" alt="{{ album.titre }}">
                             <div class="box-body">
-                                {% if (artiste.oeuvre) %}
-                                    <span class="badge badge-secondary pull-right">{{ artiste.oeuvre }} oeuvres</span>
+                                {% if (album.piste) %}
+                                    <span class="badge badge-secondary pull-right">{{ album.piste }} piste</span>
                                 {% endif %}
                                 <h4 class="card-title">
-                                    {% if artiste.statut %}
+                                    {% if album.statut %}
                                         <span class="badge badge-success">Actif</span>
                                     {% else %}
                                         <span class="badge badge-danger">Désactivé</span>
                                     {% endif %}
-                                    {{ artiste.pseudonyme }}
+                                    {{ album.titre }}
                                 </h4>
-                                <p class="card-text text-justify">{{ artiste.resume|raw }}</p>
+                                <p class="card-text text-justify">{{ album.artiste.pseudonyme }}</p>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{{ absolute_url(path('backend_artiste_edit', {'slug': artiste.slug})) }}" >
+                                    <a href="{{ absolute_url(path('backend_album_edit', {'slug': album.slug})) }}" >
                                         <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Modifier</button>
                                     </a>
-                                    <a href="{{ absolute_url(path('backend_artiste_show', {'slug': artiste.slug})) }}" >
+                                    <a href="{{ absolute_url(path('backend_album_show', {'slug': album.slug})) }}" >
                                         <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i> Consulter</button>
                                     </a>
                                 </div>

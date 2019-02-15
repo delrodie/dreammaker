@@ -15,9 +15,18 @@ class ArtisteRepository extends \Doctrine\ORM\EntityRepository
      */
     public function findList()
     {
-        return $this->createQueryBuilder('a')
-                    ->orderBy('a.pseudonyme', 'ASC')
+        return $this->liste()
                     ->getQuery()->getResult()
+            ;
+    }
+
+    /**
+     * Requete de la liste des artistes
+     */
+    public function liste()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.pseudonyme', 'ASC')
             ;
     }
 }
