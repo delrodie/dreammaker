@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class AlbumRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAlbum($id)
+    {
+        return $this->createQueryBuilder('a')
+                    ->where('a.id = :id')
+                    ->setParameter('id', $id)
+            ;
+    }
 }

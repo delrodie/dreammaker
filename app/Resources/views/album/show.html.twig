@@ -156,11 +156,28 @@
                     </div>
 
                 </div>
+                <div class="box-header text-right">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{{ absolute_url(path('backend_chanson_new', {'album': album.id})) }}" >
+                            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter une chanson</button>
+                        </a>
+
+                    </div>
+                </div>
                 <div class="nav-tabs-custom">
                     <div role="tabpanel" class="tab-pane active" id="titre">
                         <div class="list-group">
-                            <a href="#" class="list-group-item"><span class="badge badge-primary pull-right">3:22</span><i class="fa fa-play-circle"></i> 01. My Baby</a>
-                            <a href="#" class="list-group-item"><span class=" badge badge-primary pull-right">2:45</span><i class="fa fa-play-circle"></i> 02. Mon rocher</a>
+                            {% for chanson in chansons %}
+                                <a href="{{ absolute_url(path('backend_chanson_edit',{'slug': chanson.slug})) }}" class="list-group-item">
+                                    <span class="badge badge-primary pull-right">{{ chanson.duree }}</span>
+                                    <i class="fa fa-play-circle"></i> {{ chanson.piste }}. {{ chanson.titre }}
+                                    {% if (chanson.statut) %}
+                                        <span class="badge badge-success">Activée</span>
+                                    {% else %}
+                                        <span class="badge badge-danger">Désactivée</span>
+                                    {% endif %}
+                                </a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

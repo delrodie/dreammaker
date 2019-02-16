@@ -151,6 +151,11 @@ class Album
     private $artiste;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Chanson", mappedBy="album")
+     */
+    private $pistes;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="album_image", fileNameProperty="imageName", size="imageSize", nullable=true)
@@ -911,5 +916,46 @@ class Album
     public function getPiste()
     {
         return $this->piste;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pistes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add piste
+     *
+     * @param \AppBundle\Entity\Chanson $piste
+     *
+     * @return Album
+     */
+    public function addPiste(\AppBundle\Entity\Chanson $piste)
+    {
+        $this->pistes[] = $piste;
+
+        return $this;
+    }
+
+    /**
+     * Remove piste
+     *
+     * @param \AppBundle\Entity\Chanson $piste
+     */
+    public function removePiste(\AppBundle\Entity\Chanson $piste)
+    {
+        $this->pistes->removeElement($piste);
+    }
+
+    /**
+     * Get pistes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPistes()
+    {
+        return $this->pistes;
     }
 }

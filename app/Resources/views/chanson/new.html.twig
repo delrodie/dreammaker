@@ -1,0 +1,103 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}Backoffice : Gestion des Chansons{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>Gestion des chansons</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('homepage')) }}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_album_index')) }}">Album</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_artiste_show',{'slug': album.artiste.slug})) }}">{{ album.artiste.pseudonyme }}</a></li>
+            <li class="breadcrumb-item active">{{ album.titre }}</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box-header text-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+
+                <a href="{{ absolute_url(path('backend_album_show', {'slug':album.slug})) }}" >
+                    <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Retour à l'album</button>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="row">
+            {% if (chansons) %}
+                <div class="col-md-7">
+                    <div class="nav-tabs-custom">
+                        <div role="tabpanel" class="tab-pane active" id="titre">
+                            <div class="list-group">
+                                {% for chanson in chansons %}
+                                    <a href="{{ absolute_url(path('backend_chanson_edit',{'slug': chanson.slug})) }}" class="list-group-item">
+                                        <span class="badge badge-primary pull-right">{{ chanson.duree }}</span>
+                                        <i class="fa fa-play-circle"></i> {{ chanson.piste }}. {{ chanson.titre }}
+                                        {% if (chanson.statut) %}
+                                            <span class="badge badge-success">Activée</span>
+                                        {% else %}
+                                            <span class="badge badge-danger">Désactivée</span>
+                                        {% endif %}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-md-3"></div>
+            {% endif %}
+            <div class="col-md-5 box">
+                <div class="box-body">
+                    {{ form_start(form, {'attr':{'class':'form-horizontal'}}) }}
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label text-left">Album</label>
+                        <div class="col-sm-12">
+                            {{ form_widget(form.album)}}
+                            <span class="help-block">{{ form_errors(form.album)}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label text-left">Titre</label>
+                        <div class="col-sm-12">
+                            {{ form_widget(form.titre)}}
+                            <span class="help-block">{{ form_errors(form.titre)}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label text-left">Piste</label>
+                        <div class="col-sm-12">
+                            {{ form_widget(form.piste)}}
+                            <span class="help-block">{{ form_errors(form.piste)}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label text-left">Durée</label>
+                        <div class="col-sm-12">
+                            {{ form_widget(form.duree)}}
+                            <span class="help-block">{{ form_errors(form.duree)}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 control-label text-left"></div>
+                        <div class="checkbox col-sm-12">
+                            {{ form_widget(form.statut)}}
+                            <label for="appbundle_chanson_statut">Activé</label>
+                        </div>
+                    </div>
+                    {{ form_widget(form) }}
+                    <div class="box-footer">
+                        <button type="reset" class="btn btn-default">Annuler</button>
+                        <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+{% endblock %}
+

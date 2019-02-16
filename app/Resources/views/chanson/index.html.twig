@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Chansons list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Piste</th>
+                <th>Titre</th>
+                <th>Duree</th>
+                <th>Statut</th>
+                <th>Slug</th>
+                <th>Publiepar</th>
+                <th>Modifiepar</th>
+                <th>Publiele</th>
+                <th>Modifiele</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chanson in chansons %}
+            <tr>
+                <td><a href="{{ path('backend_chanson_show', { 'id': chanson.id }) }}">{{ chanson.id }}</a></td>
+                <td>{{ chanson.piste }}</td>
+                <td>{{ chanson.titre }}</td>
+                <td>{{ chanson.duree }}</td>
+                <td>{% if chanson.statut %}Yes{% else %}No{% endif %}</td>
+                <td>{{ chanson.slug }}</td>
+                <td>{{ chanson.publiePar }}</td>
+                <td>{{ chanson.modifiePar }}</td>
+                <td>{{ chanson.publieLe }}</td>
+                <td>{{ chanson.modifieLe }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('backend_chanson_show', { 'id': chanson.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('backend_chanson_edit', { 'id': chanson.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('backend_chanson_new') }}">Create a new chanson</a>
+        </li>
+    </ul>
+{% endblock %}

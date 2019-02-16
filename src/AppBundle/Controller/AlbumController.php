@@ -75,8 +75,12 @@ class AlbumController extends Controller
     {
         $deleteForm = $this->createDeleteForm($album);
 
+        $em = $this->getDoctrine()->getManager();
+        $chansons = $em->getRepository('AppBundle:Chanson')->findBy(['album'=>$album->getId()]);
+
         return $this->render('album/show.html.twig', array(
             'album' => $album,
+            'chansons' => $chansons,
             'delete_form' => $deleteForm->createView(),
         ));
     }

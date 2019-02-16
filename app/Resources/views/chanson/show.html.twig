@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Chanson</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chanson.id }}</td>
+            </tr>
+            <tr>
+                <th>Piste</th>
+                <td>{{ chanson.piste }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ chanson.titre }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ chanson.duree }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if chanson.statut %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ chanson.slug }}</td>
+            </tr>
+            <tr>
+                <th>Publiepar</th>
+                <td>{{ chanson.publiePar }}</td>
+            </tr>
+            <tr>
+                <th>Modifiepar</th>
+                <td>{{ chanson.modifiePar }}</td>
+            </tr>
+            <tr>
+                <th>Publiele</th>
+                <td>{{ chanson.publieLe }}</td>
+            </tr>
+            <tr>
+                <th>Modifiele</th>
+                <td>{{ chanson.modifieLe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('backend_chanson_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('backend_chanson_edit', { 'id': chanson.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
