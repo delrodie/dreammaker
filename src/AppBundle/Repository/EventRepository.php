@@ -20,4 +20,28 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
                     ->getQuery()->getResult()
             ;
     }
+
+    /**
+     * Liste des events par date
+     */
+    public function findListEvent($limit = null)
+    {
+        if ($limit){
+            return $this->createQueryBuilder('e')
+                ->where('e.dateEvent > :date')
+                ->orderBy('e.dateEvent', 'ASC')
+                ->setFirstResult(0)
+                ->setMaxResults($limit)
+                ->setParameter('date', date('Y-m-d', time()))
+                ->getQuery()->getResult()
+                ;
+        }else{
+            return $this->createQueryBuilder('e')
+                ->where('e.dateEvent > :date')
+                ->orderBy('e.dateEvent', 'ASC')
+                ->setParameter('date', date('Y-m-d', time()))
+                ->getQuery()->getResult()
+                ;
+        }
+    }
 }

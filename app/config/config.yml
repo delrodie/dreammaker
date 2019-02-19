@@ -232,6 +232,25 @@ liip_imagine:
             # 4px larger to create a 2px border around the final image
             background: { size: [200, 110], position: center, color: '#ffffff'}
 
+        page_img:
+            quality: 100
+            filters:
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [850, 350], mode: inset }
+                # create a 2px black border: center the thumbnail on a black background
+                # 4px larger to create a 2px border around the final image
+                background: { size: [850, 350], position: center, color: '#ffffff'}
+
+        event_mini:
+            quality: 100
+            filters:
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [82, 84], mode: outbound }
+                # create a 2px black border: center the thumbnail on a black background
+                # 4px larger to create a 2px border around the final image
+                background: { size: [82, 84], position: center, color: '#ffffff'}
 
 ivory_ck_editor:
     default_config: default

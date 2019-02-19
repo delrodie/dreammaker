@@ -1,0 +1,90 @@
+{% extends "base.html.twig" %}
+
+{% block title %}les actualités du Showbiz {% endblock %}
+
+{% block body %}
+	<section class="page-banner" style="background-image:url({{ absolute_url(asset('ressources/images/bg/bg-page.jpg')) }});">
+		<div class="auto-container">
+			<h1>Les actualités</h1>
+		</div>
+	</section>
+
+	<section id="blog" class="blog section">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-md-8">
+					{% for actualite in actualites %}
+						<div class="post-item wow" data-animation="fadeInUp" data-animation-delay="300">
+							<h2 class="wow fadeInUp"><a href="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}">{{ actualite.titre }}</a></h2>
+							<div class="post wow fadeInUp">
+								<a href="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}">
+									<img class="img-responsive" src="{{ asset('uploads/actualite/'~ actualite.imageName) | imagine_filter('page_img') }}" alt="{{ actualite.titre }}" />
+								</a>
+								<div class="post-content">
+									<p>{{ actualite.resume|raw }} </p>
+									<div class="posted-date">{{ actualite.publieLe|date('d M Y') }}   </div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+
+					<div class="post-nav wow fadeInRight" data-animation="fadeInUp" data-animation-delay="300">
+						<ul class="pagination">
+							<li><a href="#">&laquo;</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li class="active"><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="col-md-4">
+
+					<div class="sidebar">
+
+						{{ render(url('frontend_bloc_droit')) }}
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+{% endblock %}
+
+{% block meta %}
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+	<script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+{% endblock %}

@@ -34,4 +34,16 @@ class DefaultController extends Controller
     {
         return $this->render('default/dashboard.html.twig');
     }
+
+    /**
+     * @Route("/bock/droit", name="frontend_bloc_droit")
+     */
+    public function blocAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $events = $em->getRepository('AppBundle:Event')->findListEvent(3);
+        return $this->render("frontend/bloc_droit.html.html.twig",[
+            'events' => $events
+        ]);
+    }
 }

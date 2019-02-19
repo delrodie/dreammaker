@@ -1,0 +1,32 @@
+<div class="search wow fadeInUp">
+	<form>
+		<input type="search" name="recherche" placeholder="Recherche..." class="form-control">
+		<input type="submit" value="submit">
+	</form>
+</div>
+
+{% if (events) %}
+	<div class="blog/popular-post widget wow fadeInUp">
+		<h2>Showbiz'Event</h2>
+		<ul class="popular-list">
+			{% for event in events %}
+				<li>
+					<a href="#"><img src="{{ asset('uploads/event/'~ event.imageName) | imagine_filter('event_mini') }}" alt="" class="img-responsive"/></a>
+					<div class="content">
+						<h3><a href="#">{{ event.titre }}</a></h3>
+						<div class="posted-date">{{ event.dateEvent|date('d M Y') }}</div>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endif %}
+
+<div class="blog/popular-post widget wow fadeInUp">
+	<h2>Nous suivre</h2>
+	<ul class="popular-list">
+		<div id="fb-root"></div>
+		<div class="fb-page" data-href="https://web.facebook.com/dreammakercicom/" data-tabs="timeline,events,messages" data-adapt-container-width="true"  data-height="800" data-small-header="false"  data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://web.facebook.com/dreammakercicom/" class="fb-xfbml-parse-ignore"><a href="https://web.facebook.com/dreammakercicom/">Dream Maker</a></blockquote></div>
+
+	</ul>
+</div>
