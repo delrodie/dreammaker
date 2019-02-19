@@ -10,6 +10,22 @@ namespace AppBundle\Repository;
  */
 class ArtisteRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findArtiste($limit = null)
+    {
+        if ($limit){
+            return $this->createQueryBuilder('a')
+                ->orderBy('a.id', 'DESC')
+                ->setMaxResults($limit)
+                ->getQuery()->getResult()
+                ;
+        }else{
+            return $this->createQueryBuilder('a')
+                ->orderBy('a.id', 'DESC')
+                ->getQuery()->getResult()
+                ;
+        }
+    }
+
     /**
      * Liste alphabetique des artistes
      */

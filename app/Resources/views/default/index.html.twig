@@ -175,248 +175,167 @@
             </div>
             <div class="swiper-container">
                 <div class="swiper-wrapper articles">
-                    <div class="swiper-slide wow fadeInLeft">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a href="#">
-                                    <img src="ressources/images/actualite/actu2-01.jpg" alt="" class="img-responsive">
-                                </a>
+                    {% for actualite in actualites %}
+                        {% if (loop.index is divisibleby(2)) %}
+                            <div class="swiper-slide wow fadeInDown">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a href="#">
+                                            <!--<img src="{{ vich_uploader_asset(actualite, 'imageFile') }}" alt="">-->
+                                            <img src="{{ asset('uploads/actualite/'~ actualite.imageName) | imagine_filter('actualite_accueil') }}" alt="{{ actualite.titre }}"  class="img-responsive"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4><a href="#">Yabongo Lova</a></h4>
+                                        <p class="text">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consectetur consequatur delectus deserunt doloremque earum eum, eveniet laudantium magni nemo obcaecati provident quasi, quo saepe, voluptatibus.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-12">
-                                <h4><a href="#">Dedicace de l'album de chantal</a></h4>
-                                <p class="text">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aut beatae blanditiis culpa cumque doloremque ea, id, illo illum itaque labore perferendis rerum temporibus vero voluptatem? Eaque id similique veritatis.
-                                </p>
+                        {% else %}
+                            <div class="swiper-slide wow fadeInLeft">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a href="#">
+                                            <img src="{{ asset('uploads/actualite/'~ actualite.imageName) | imagine_filter('actualite_accueil') }}" alt="{{ actualite.titre }}"  class="img-responsive"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4><a href="#">Dedicace de l'album de chantal</a></h4>
+                                        <p class="text">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aut beatae blanditiis culpa cumque doloremque ea, id, illo illum itaque labore perferendis rerum temporibus vero voluptatem? Eaque id similique veritatis.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide wow fadeInDown">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a href="#">
-                                    <img src="ressources/images/actualite/actu3-01.jpg" alt="" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="col-sm-12">
-                                <h4><a href="#">Yabongo Lova</a></h4>
-                                <p class="text">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consectetur consequatur delectus deserunt doloremque earum eum, eveniet laudantium magni nemo obcaecati provident quasi, quo saepe, voluptatibus.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide wow fadeInRight">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a href="#">
-                                    <img src="ressources/images/actualite/actu-01.jpg" alt="" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="col-sm-12">
-                                <h4><a href="#">Yabongo Lova</a></h4>
-                                <p class="text">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consectetur consequatur delectus deserunt doloremque earum eum, eveniet laudantium magni nemo obcaecati provident quasi, quo saepe, voluptatibus.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide wow fadeInUp">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a href="#">
-                                    <img src="ressources/images/actualite/actu2-01.jpg" alt="" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="col-sm-12">
-                                <h4><a href="#">Yabongo Lova</a></h4>
-                                <p class="text">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consectetur consequatur delectus deserunt doloremque earum eum, eveniet laudantium magni nemo obcaecati provident quasi, quo saepe, voluptatibus.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                        {% endif %}
+
+                    {% endfor %}
+
                 </div>
 
                 <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
-    <section class="our-team">
-        <div class="auto-container">
-            <div class="titre-section">
-                <h2>Nos artistes</h2>
+    {% if (artistes) %}
+        <section class="our-team">
+            <div class="auto-container">
+                <div class="titre-section">
+                    <h2>Nos artistes</h2>
+                </div>
+
+                <div class="row clearfix">
+
+                    {% for artiste in artistes %}
+                        {% if (loop.index is not divisibleby(2)) %}
+                            <div class="col-md-3 col-sm-6 col-xs-6">
+                                <article class="member wow fadeInRight" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
+                                    <figure class="ressources/image">
+                                        <a href="#">
+                                            <img src="{{ asset('uploads/artiste/'~ artiste.imageName) | imagine_filter('artiste_accueil') }}" alt="{{ artiste.pseudonyme }}"  class="img-responsive"/>
+                                        </a>
+                                        <span class="curve"></span>
+                                    </figure>
+                                    <div class="content">
+                                        <ul class="social-links">
+                                            {% if (artiste.facebook) %}
+                                                <li><a class="fa fa-facebook-f" href="https://facebook.com/{{ artiste.facebook }}" target="_blank" title="Suivre {{ artiste.pseudonyme }} sur Facebook"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.twitter) %}
+                                                <li><a class="fa fa-twitter" href="https://twitter.com/{{ artiste.twitter }}" title="Suivre {{ artiste.pseudonyme }} sur Twitter"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.instagram) %}
+                                                <li><a class="fa fa-instagram" href="https://instagram.com/{{ artiste.instagram }}" title="Suivre {{ artiste.pseudonyme }} sur Instagram" target="_blank"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.youtube) %}
+                                                <li><a class="fa fa-youtube" href="https://youtube.com/{{ artiste.youtube }}" title="Suivre {{ artiste.pseudonyme }} sur Youtube" target="_blank"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.website) %}
+                                                <li><a class="fa fa-globe" href="{{ artiste.website }}" title="{{ artiste.pseudonyme }}" target="_blank"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.email) %}
+                                                <li><a class="fa fa-envelope" href="mailto:{{ artiste.email }}" title="Envoyer un email à {{ artiste.pseudonyme }}"></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </article>
+                            </div>
+                        {% else %}
+                            <div class="col-md-3 col-sm-6 col-xs-6">
+                                <article class="member wow fadeInDown" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
+                                    <figure class="ressources/image">
+                                        <a href="#">
+                                            <img src="{{ asset('uploads/artiste/'~ artiste.imageName) | imagine_filter('artiste_accueil') }}" alt="{{ artiste.pseudonyme }}"  class="img-responsive"/>
+                                        </a>
+                                        <span class="curve"></span>
+                                    </figure>
+                                    <div class="content">
+                                        <ul class="social-links">
+                                            {% if (artiste.facebook) %}
+                                                <li><a class="fa fa-facebook-f" href="https://facebook.com/{{ artiste.facebook }}" target="_blank" title="Suivre {{ artiste.pseudonyme }} sur Facebook"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.twitter) %}
+                                                <li><a class="fa fa-twitter" href="https://twitter.com/{{ artiste.twitter }}" title="Suivre {{ artiste.pseudonyme }} sur Twitter"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.instagram) %}
+                                                <li><a class="fa fa-instagram" href="https://instagram.com/{{ artiste.instagram }}" title="Suivre {{ artiste.pseudonyme }} sur Instagram" target="_blank"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.youtube) %}
+                                                <li><a class="fa fa-youtube" href="https://youtube.com/{{ artiste.youtube }}" title="Suivre {{ artiste.pseudonyme }} sur Youtube" target="_blank"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.website) %}
+                                                <li><a class="fa fa-globe" href="{{ artiste.website }}" title="{{ artiste.pseudonyme }}" target="_blank"></a></li>
+                                            {% endif %}
+                                            {% if (artiste.email) %}
+                                                <li><a class="fa fa-envelope" href="mailto:{{ artiste.email }}" title="Envoyer un email à {{ artiste.pseudonyme }}"></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </article>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+                <div class="lire-suite text-right">
+                    <h3><a href="#">&raquo; Voir tous les artistes</a></h3>
+                </div>
             </div>
+        </section>
+    {% endif %}
 
-            <div class="row clearfix">
+    {% if (events) %}
+        <section class="successfull-stories curved-carousel event">
+            <div class="auto-container">
+                <div class="titre-section">
+                    <h2>Showbiz Event</h2>
+                </div>
+            </div>
+            <div class="row slider">
+                {% for event in events %}
+                    <article class="slide-item">
+                        <div class="auto-container">
+                            <div class="text-side">
+                                <div class="sec-title">
+                                    <h2>{{ event.titre }}</h2>
+                                </div>
+                                <div class="sec-text">
+                                    <p>{{ event.resume }}</p>
+                                </div>
+                            </div>
 
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <article class="member wow fadeInLeft" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
-                        <figure class="ressources/image">
-                            <a href="#">
-                                <img src="ressources/images/artiste/artiste-01.jpg" alt="" title="" class="img-responsive">
-                            </a>
-                            <span class="curve"></span>
-                        </figure>
-                        <div class="content">
-                            <ul class="social-links">
-                                <li><a class="fa fa-facebook-f" href="#"></a></li>
-                                <li><a class="fa fa-twitter" href="#"></a></li>
-                                <li><a class="fa fa-google-plus" href="#"></a></li>
-                                <li><a class="fa fa-instagram" href="#"></a></li>
-                                <li><a class="fa fa-envelope" href="mailto:me@example.com"></a></li>
-                            </ul>
+                            <figure class="image-box">
+                                <div class="image-layer" style="background-image:url({{ vich_uploader_asset(event, 'imageFile') }});"></div>
+                            </figure>
                         </div>
                     </article>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <article class="member wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
-                        <figure class="ressources/image">
-                            <a href="#">
-                                <img src="ressources/images/artiste/artiste-02.jpg" alt="" title="" class="img-responsive">
-                            </a>
-                            <span class="curve"></span>
-                        </figure>
-                        <div class="content">
-
-                            <ul class="social-links">
-                                <li><a class="fa fa-facebook-f" href="#"></a></li>
-                                <li><a class="fa fa-twitter" href="#"></a></li>
-                                <li><a class="fa fa-google-plus" href="#"></a></li>
-                                <li><a class="fa fa-instagram" href="#"></a></li>
-                                <li><a class="fa fa-envelope" href="mailto:me@example.com"></a></li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <article class="member wow fadeInDown" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
-                        <figure class="ressources/image">
-                            <img src="ressources/images/artiste/artiste-03.jpg" alt="" title="" class="img-responsive">
-                            <span class="curve"></span>
-                        </figure>
-                        <div class="content">
-
-                            <ul class="social-links">
-                                <li><a class="fa fa-facebook-f" href="#"></a></li>
-                                <li><a class="fa fa-twitter" href="#"></a></li>
-                                <li><a class="fa fa-google-plus" href="#"></a></li>
-                                <li><a class="fa fa-instagram" href="#"></a></li>
-                                <li><a class="fa fa-envelope" href="mailto:me@example.com"></a></li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <article class="member wow fadeInRight" data-wow-delay="0.5s" data-wow-duration="1s" data-wow-offset="0">
-                        <figure class="ressources/image">
-                            <img src="ressources/images/artiste/artiste-04.jpg" alt="" title="" class="img-responsive">
-                            <span class="curve"></span>
-                        </figure>
-                        <div class="content">
-
-                            <ul class="social-links">
-                                <li><a class="fa fa-facebook-f" href="#"></a></li>
-                                <li><a class="fa fa-twitter" href="#"></a></li>
-                                <li><a class="fa fa-google-plus" href="#"></a></li>
-                                <li><a class="fa fa-instagram" href="#"></a></li>
-                                <li><a class="fa fa-envelope" href="mailto:me@example.com"></a></li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
+                {% endfor %}
 
             </div>
-            <div class="lire-suite text-right">
-                <h3><a href="#">&raquo; Voir tous les artistes</a></h3>
-            </div>
-        </div>
-    </section>
-
-    <section class="successfull-stories curved-carousel event">
-        <div class="auto-container">
-            <div class="titre-section">
-                <h2>Showbiz Event</h2>
-            </div>
-        </div>
-        <div class="row slider">
-            <article class="slide-item">
-                <div class="auto-container">
-                    <div class="text-side">
-                        <div class="sec-title">
-                            <h2>Lancement de l'album de FalLy</h2>
-                        </div>
-                        <div class="sec-text">
-                            <p>Jenna Jameson had set herself the goal of losing 1 stone and running the Great South Run the year after she gave birth to her little girl. With the help of our personal training sessions she achieved her goal and her little girl was there to watch her cross the finishing line.</p>
-                        </div>
-                    </div>
-
-                    <figure class="image-box">
-                        <div class="image-layer" style="background-image:url(ressources/images/actualite/actu1-01.jpg);"></div>
-
-                    </figure>
-                </div>
-            </article>
-
-            <article class="slide-item">
-                <div class="auto-container">
-                    <div class="text-side">
-                        <div class="sec-title">
-                            <h2>Dedicace</h2>
-                        </div>
-                        <div class="sec-text">
-                            <p>Liza Boye had set herself the goal of losing 1 stone and running the Great South Run the year after she gave birth to her little girl. With the help of our personal training sessions she achieved her goal and her little girl was there to watch her cross the finishing line.</p>
-                        </div>
-                    </div>
-
-                    <figure class="image-box">
-                        <div class="image-layer" style="background-image:url(ressources/images/actualite/actu2-01.jpg);"></div>
-
-                    </figure>
-                </div>
-            </article>
-
-            <article class="slide-item">
-                <div class="auto-container">
-                    <div class="text-side">
-                        <div class="sec-title">
-                            <h3>PERSONAL TRAINING</h3>
-                            <h2>Dedicace du nouvel album de fally </h2>
-                        </div>
-                        <div class="sec-text">
-                            <p>Jenna Jameson had set herself the goal of losing 1 stone and running the Great South Run the year after she gave birth to her little girl. With the help of our personal training sessions she achieved her goal and her little girl was there to watch her cross the finishing line.</p>
-                        </div>
-                    </div>
-
-                    <figure class="image-box">
-                        <div class="image-layer" style="background-image:url(ressources/images/actualite/actu1-01.jpg);"></div>
-
-                    </figure>
-                </div>
-            </article>
-
-            <article class="slide-item">
-                <div class="auto-container">
-                    <div class="text-side">
-                        <div class="sec-title">
-                            <h2>Yabongo Lova</h2>
-                        </div>
-                        <div class="sec-text">
-                            <p>Liza Boye had set herself the goal of losing 1 stone and running the Great South Run the year after she gave birth to her little girl. With the help of our personal training sessions she achieved her goal and her little girl was there to watch her cross the finishing line.</p>
-                        </div>
-                    </div>
-
-                    <figure class="image-box">
-                        <div class="image-layer" style="background-image:url(ressources/images/actualite/actu3-01.jpg);"></div>
-
-                    </figure>
-                </div>
-            </article>
-
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
 {% endblock %}
 

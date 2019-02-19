@@ -19,7 +19,7 @@ class ActualiteType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class,[
-                'attr'=>['class'=>'form-control', 'placeholder'=>"Titre de l'actualité"]
+                'attr'=>['class'=>'form-control', 'placeholder'=>"Titre de l'actualité", 'autocomplete'=>"off"]
             ])
             ->add('contenu', TextareaType::class,[
                 'attr' =>['class'=>'textarea', 'style' => 'width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;']
@@ -29,7 +29,7 @@ class ActualiteType extends AbstractType
                 'attr'=>['class'=>'form-control', 'data-role'=>'tagsinput' ,'placeholder'=>'Mots clés']
             ])
             ->add('statut', CheckboxType::class,[
-                'attr'=>['class'=>'custom-input-control']
+                'attr'=>['class'=>'custom-input-control'], 'required'=> false
             ])
             ->add('imageFile', VichImageType::class,[
                 'required' => false,

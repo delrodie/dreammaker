@@ -1,0 +1,14 @@
+{% if (partenaires) %}
+	<section class="client-logos">
+		<div class="title">
+			<h2>Nos partenaires<span class="small-text"></span></h2>
+		</div>
+		<div class="logo-scroller">
+			<ul class="slider">
+				{% for partenaire in partenaires %}
+					<li class="slide-item"><a href="#"><img src="{{ asset('uploads/partenaire/'~ partenaire.imageName) | imagine_filter('partenaire_logo') }}" alt="{{ partenaire.nom }}"></a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+{% endif %}

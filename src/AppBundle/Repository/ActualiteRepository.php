@@ -14,9 +14,22 @@ class ActualiteRepository extends \Doctrine\ORM\EntityRepository
      * Liste decroissante des actualités
      * Backend_actulaite_index
      */
-    public function findList()
+    public function findList($statut = null, $limit = null, $offset = null)
     {
-        return $this->QueryList()->getQuery()->getResult();
+        if ($statut){
+            if ($limit){
+                if (!$offset){$offset = 0;}
+                return $this->QueryList()->where('a.statut = 1')
+                                         ->setFirstResult($offset)
+                                         ->setMaxResults($limit)
+                                         ->getQuery()->getResult()
+                    ;
+            }else{
+                return $this->QueryList()->where('a.statut = 1')->getQuery()->getResult();
+            }
+        }else{
+            return $this->QueryList()->getQuery()->getResult();
+        }
     }
 
     /**

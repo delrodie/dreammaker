@@ -231,7 +231,7 @@ class Artiste
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
-     * @return Partenaire
+     * @return Artiste
      */
     public function setImageFile(File $image = null)
     {
