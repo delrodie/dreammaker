@@ -134,7 +134,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li{% if (current_menu == 'accueil') %} class="current"{% endif %}><a href="{{ absolute_url(path('homepage')) }}">Accueil</a></li>
                         <li{% if (current_menu == 'actualite') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_actualite_index')) }}">Actualités</a></li>
-                        <li><a href="{{ absolute_url(asset('homepage')) }}">Qui sommes-nous?</a></li>
+                        <li{% if (current_menu == 'presentation') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_presentation_index')) }}">Qui sommes-nous?</a></li>
                         <li><a href="{{ absolute_url(asset('homepage')) }}">Notre label</a></li>
                         <li><a href="{{ absolute_url(asset('homepage')) }}">Events</a></li>
                         <li><a href="{{ absolute_url(asset('homepage')) }}">Contact</a></li>
