@@ -92,6 +92,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Ordre d'affichage</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.flag)}}
+                                    <span class="help-block">{{ form_errors(form.flag)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-12 control-label text-left">Telecharger l'illustration</label>
                                 <div class="col-sm-12">
                                     {{ form_widget(form.imageFile)}}

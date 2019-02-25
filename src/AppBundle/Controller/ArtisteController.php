@@ -90,7 +90,7 @@ class ArtisteController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $resume = $utilities->resume($artiste->getBiographie(), 300, '...', true);
-            $artiste->setResume($resume);
+            $artiste->setResume($resume); //dump($artiste->getFlag());die();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('backend_artiste_show', array('slug' => $artiste->getSlug()));

@@ -55,6 +55,13 @@
                                     <span class="help-block">{{ form_errors(edit_form.manager)}}</span>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Ordre d'affichage</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(edit_form.flag)}}
+                                    <span class="help-block">{{ form_errors(edit_form.flag)}}</span>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-6 control-label text-left">Email</label>

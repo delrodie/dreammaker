@@ -117,6 +117,13 @@ class Artiste
     private $statut;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="flag", type="string", length=255, nullable=true, options={"default": 1})
+     */
+    private $flag;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="oeuvre", type="integer", nullable=true, options={"defaul": 0})
@@ -809,5 +816,29 @@ class Artiste
     public function getOeuvre()
     {
         return $this->oeuvre;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param string $flag
+     *
+     * @return Artiste
+     */
+    public function setFlag($flag)
+    {
+        $this->flag = $flag;
+
+        return $this;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return string
+     */
+    public function getFlag()
+    {
+        return $this->flag;
     }
 }

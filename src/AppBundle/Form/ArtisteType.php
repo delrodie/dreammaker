@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,6 +54,16 @@ class ArtisteType extends AbstractType
             ])
             ->add('statut', CheckboxType::class,[
                 'attr'=>['class'=>'custom-input-control'], 'required'=> false
+            ])
+            ->add('flag', ChoiceType::class,[
+                'attr'=>['class'=>'form-control'],
+                'choices'=>[
+                    1 => 1,
+                    2 => 1,
+                    3 => 1,
+                    4 => 4,
+                    5 => 5
+                ]
             ])
             ->add('imageFile', VichImageType::class,[
                 'required' => false,

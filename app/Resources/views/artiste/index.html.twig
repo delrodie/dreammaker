@@ -26,6 +26,33 @@
                         <div class="box box-default" style="height: 600px">
                             <img class="card-img-top img-responsive" src="{{ vich_uploader_asset(artiste, 'imageFile') }}" alt="{{ artiste.pseudonyme }}">
                             <div class="box-body">
+                                {% if (artiste.flag == 5) %}
+                                    <span class="badge badge-danger">
+                                        {% for i in 1..5 %}
+                                            <i class="fa fa-star-half-alt"></i>
+                                        {% endfor %}
+                                    </span>
+                                {% elseif (artiste.flag == 4)%}
+                                    <span class="badge badge-danger">
+                                        {% for i in 1..4 %}
+                                            <i class="fa fa-star-half-alt"></i>
+                                        {% endfor %}
+                                    </span>
+                                {% elseif (artiste.flag == 3)%}
+                                    <span class="badge badge-danger">
+                                        {% for i in 1..3 %}
+                                            <i class="fa fa-star-half-alt"></i>
+                                        {% endfor %}
+                                    </span>
+                                {% elseif (artiste.flag == 2)%}
+                                    <span class="badge badge-danger">
+                                        {% for i in 1..2 %}
+                                            <i class="fa fa-star-half-alt"></i>
+                                        {% endfor %}
+                                    </span>
+                                {% else %}
+                                    <span class="badge badge-danger"><i class="fa fa-star-half-alt"></i></span>
+                                {% endif %}
                                 {% if (artiste.oeuvre) %}
                                     <span class="badge badge-secondary pull-right">{{ artiste.oeuvre }} oeuvres</span>
                                 {% endif %}
