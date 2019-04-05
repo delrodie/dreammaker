@@ -98,17 +98,12 @@
     {% endblock %}
 
     {% block stylesheets %}
-        {% stylesheets
-            'ressources/css/bootstrap.css'
-            'ressources/css/revolution-slider.css'
-            'ressources/vendor/swiper/css/swiper.min.css'
-            'ressources/css/style.css'
-            'ressources/css/feature.css'
-            'ressources/css/responsive.css'
-            filter='cssrewrite' output='ressources/css/dreammaker.css'
-        %}
-            <link rel="stylesheet" href="{{ absolute_url(asset_url)}}" />
-        {% endstylesheets %}
+        <link rel="stylesheet" href="{{ absolute_url(asset('ressources/css/bootstrap.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('ressources/css/revolution-slider.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('ressources/vendor/swiper/css/swiper.min.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('ressources/css/style.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('ressources/css/feature.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('ressources/css/responsive.css')) }}">
     {% endblock %}
 	<link rel="shortcut ico" href="{{ absolute_url(asset('ressources/images/favicon.ico')) }}">
 
