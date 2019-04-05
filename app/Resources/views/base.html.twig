@@ -110,9 +110,20 @@
             <link rel="stylesheet" href="{{ absolute_url(asset_url)}}" />
         {% endstylesheets %}
     {% endblock %}
+	<link rel="shortcut ico" href="{{ absolute_url(asset('ressources/images/favicon.ico')) }}">
 
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="ressources/js/respond.js"></script><![endif]-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-104978409-10"></script>
+	<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-104978409-10');
+	</script>
+
 </head>
 <body>
 <div class="page-wraper">
@@ -135,9 +146,9 @@
                         <li{% if (current_menu == 'accueil') %} class="current"{% endif %}><a href="{{ absolute_url(path('homepage')) }}">Accueil</a></li>
                         <li{% if (current_menu == 'actualite') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_actualite_index')) }}">Actualités</a></li>
                         <li{% if (current_menu == 'presentation') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_presentation_index')) }}">Qui sommes-nous?</a></li>
-                        <li><a href="{{ absolute_url(asset('homepage')) }}">Notre label</a></li>
-                        <li><a href="{{ absolute_url(asset('homepage')) }}">Events</a></li>
-                        <li><a href="{{ absolute_url(asset('homepage')) }}">Contact</a></li>
+                        <li{% if (current_menu == 'label') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_label_index')) }}">Notre label</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -155,7 +166,7 @@
             <div class="upper clearfix">
                 <h2 class="pull-left">Suivez-<span>nous</span></h2>
                 <div class="social-links pull-left">
-                    <a href="#" class="icon fa fa-facebook-f wow fadeInRight" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0"></a>
+                    <a href="https://www.facebook.com/dreammakercicom/" class="icon fa fa-facebook-f wow fadeInRight" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0"></a>
                     <a href="#" class="icon fa fa-twitter wow fadeInRight" data-wow-delay="0.2s" data-wow-duration="1s" data-wow-offset="0"></a>
                     <a href="#" class="icon fa fa-youtube wow fadeInRight" data-wow-delay="0.4s" data-wow-duration="1s" data-wow-offset="0"></a>
                     <a href="#" class="icon fa fa-instagram wow fadeInRight" data-wow-delay="1s" data-wow-duration="1s" data-wow-offset="0"></a>
@@ -176,12 +187,12 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="footer-widget popular-tags wow fadeInUp" data-wow-delay="1.5s" data-wow-duration="1s" data-wow-offset="0">
                             <h2>Nos services</h2>
-                            <a href="#">Distributions</a>
-                            <a href="#">Production</a>
-                            <a href="#">Multimédia</a>
-                            <a href="#">Evenementiel</a>
-                            <a href="#">Regie publicitaire</a>
-                            <a href="#">Communication</a>
+                            <a href="{{ absolute_url(path('frontend_presentation_index')) }}#dreamService">Distributions</a>
+                            <a href="{{ absolute_url(path('frontend_presentation_index')) }}#dreamService">Production</a>
+                            <a href="{{ absolute_url(path('frontend_presentation_index')) }}#dreamService">Multimédia</a>
+                            <a href="{{ absolute_url(path('frontend_presentation_index')) }}#dreamService">Evenementiel</a>
+                            <a href="{{ absolute_url(path('frontend_presentation_index')) }}#dreamService">Regie publicitaire</a>
+                            <a href="{{ absolute_url(path('frontend_presentation_index')) }}#dreamService">Communication</a>
                         </div>
                     </div>
                     <!--Quick Links-->
@@ -190,15 +201,15 @@
                             <h2>Plan du site</h2>
                             <div class="clearfix">
                                 <ul>
-                                    <li><a href="#">Actualités</a></li>
-                                    <li><a href="#">Présentation</a></li>
-                                    <li><a href="#">Services</a></li>
+                                    <li><a href="{{ absolute_url(path('frontend_actualite_index')) }}">Actualités</a></li>
+                                    <li><a href="{{ absolute_url(path('frontend_presentation_index')) }}">Présentation</a></li>
+                                    <li><a href="{{ absolute_url(path('frontend_presentation_index')) }}#dreamService">Services</a></li>
                                     <li><a href="#">Contact</a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#">Notre label</a></li>
-                                    <li><a href="#">Nos artistes</a></li>
-                                    <li><a href="#">Nos albums</a></li>
+                                    <li><a href="{{ absolute_url(path('frontend_label_index')) }}">Notre label</a></li>
+                                    <li><a href="{{ absolute_url(path('frontend_label_index')) }}">Nos artistes</a></li>
+                                    <li><a href="{{ absolute_url(path('frontend_label_index')) }}"">Nos albums</a></li>
                                     <li><a href="#">Nos events</a></li>
                                 </ul>
                             </div>
@@ -213,11 +224,11 @@
                             <ul>
                                 <li class="clearfix">
                                     <strong class="pull-left">Mail</strong>
-                                    <p class="pull-right">info@dreammaker-ci.com</p>
+                                    <p class="pull-right"><a href="mailto:info@dreammaker-ci.com">info@dreammaker-ci.com</a></p>
                                 </li>
                                 <li class="clearfix">
                                     <strong class="pull-left">Tel</strong>
-                                    <p class="pull-right">(225) 58 99 99 79</p>
+                                    <p class="pull-right"><a href="tel:+22558999979">(225) 58 99 99 79</a></p>
                                 </li>
                                 <li class="clearfix">
                                     <strong class="pull-left">Adresse</strong>

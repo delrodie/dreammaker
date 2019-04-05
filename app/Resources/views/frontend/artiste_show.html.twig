@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Biographie et bibliographie de l'artiste {{ artiste.pseudonyme }} {% endblock %}
+
+{% block body %}
+	<section class="page-banner" style="background-image:url({{ absolute_url(asset('ressources/images/bg/bg-page.jpg')) }});">
+		<div class="auto-container">
+			<h1>{{ artiste.pseudonyme }}</h1>
+		</div>
+	</section>
+
+	<section id="blog" class="blog section">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="author wow fadeInUp">
+						<img src="{{ asset('uploads/artiste/'~ artiste.imageName) | imagine_filter('artiste_accueil') }}" alt="{{ artiste.pseudonyme }}" class="img-responsive" width="260" />
+						<div class="author-comment">
+							<h4><strong>{{ artiste.pseudonyme }}</strong></h4>
+							{{ artiste.biographie|raw }}
+							{% if artiste.manager %}
+								<label for="">Manager:</label> {{ artiste.manager }}<br>
+							{% endif %}
+							{% if artiste.email %}
+								<label for="">Email:</label> {{ artiste.email }} <br>
+							{% endif %}
+							{% if artiste.website %}
+								<label for="">Website:</label> <a href="http://{{ artiste.website }}" target="_blank">http://{{ artiste.website }}</a> <br>
+							{% endif %}
+							<label for="">Genre:</label>
+							<span class="badge genre"><a href="#">Zouglou</a></span>
+							{% if artiste.genre %}
+								{% for tag in artiste.genre|join("' ") %}
+									<span class="badge badge-primary"><a href="#" title="Voir les autres artistes {{ tag }}">{{ tag }}</a></span>
+								{% endfor %}
+							{% endif %}
+						</div>
+						<div class="row col-md-12 suivre-artistes">
+							{% if artiste.youtube %}
+								<a href="https://www.youtube.com/{{ artiste.youtube }}"><i class="fa fa-youtube fa-2x"></i></a>
+							{% endif %}
+							{% if artiste.facebook %}
+								<a href="https://facebook.com/{{ artiste.facebook }}"><i class="fa fa-facebook-square fa-2x"></i></a>
+							{% endif %}
+							{% if artiste.twitter %}
+								<a href="https://twiter.com/{{ artiste.twitter }}"><i class="fa fa-twitter-square fa-2x"></i></a>
+							{% endif %}
+							{% if artiste.instagram %}
+								<a href="https://instagram.com/{{ artiste.instagram }}"><i class="fa fa-instagram fa-2x"></i></a>
+							{% endif %}
+
+
+						</div>
+						<div class="clear"></div>
+					</div>
+					{% if artiste.oeuvre %}
+
+						<section id="gallery-page" class="two-col">
+							<div class="auto-container">
+								<div class="sec-title">
+									<h2>La discographie</h2>
+								</div>
+
+								<div class="gallery-filter">
+									<ul>
+										<li class="filter" data-filter="all">
+											<span>Tout</span>
+										</li>
+										<li class="filter" data-filter=".album">
+											<span>Single</span>
+										</li>
+										<li class="filter" data-filter=".single">
+											<span>Albums</span>
+										</li>
+									</ul>
+								</div>
+
+								<div id="image-gallery" class="clearfix">
+									{% for album in albums %}
+										<div class="col-lg-4 mix {{ album.type|lower }}">
+											<a href="{{ absolute_url(path('frontend_label_album',{'slug': album.slug})) }}">
+												<img src="{{ asset('uploads/album/'~ album.imageName) | imagine_filter('artiste_accueil') }}" alt="{{ album.titre|raw }}">
+												<div class="overlay">
+													<i class="fa fa-search"></i>
+													<h2>{{ album.titre }}</h2>
+												</div>
+											</a>
+
+										</div>
+									{% endfor %}
+
+								</div>
+							</div>
+						</section>
+
+					{% endif %}
+				</div>
+
+
+				<div class="col-md-4">
+
+					<div class="sidebar">
+						{{ render(url('frontend_bloc_droit')) }}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ absolute_url(asset('ressources/js/jquery.fancybox.pack.js')) }}"></script>
+	<script src="{{ absolute_url(asset('ressources/js/jquery.mixitup.min.js')) }}"></script>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+	<script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+{% endblock %}
+
+
