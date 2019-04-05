@@ -12,15 +12,10 @@
     <title>{% block title %}Backoffice ::{% endblock %} </title>
   
   {% block stylesheets %}
-    	{% stylesheets
-        'backoffice/assets/vendor_components/bootstrap/dist/css/bootstrap.min.css'
-        'backoffice/css/master_style.css'
-        'backoffice/css/skins/_all-skins.css'
-        'backoffice/assets/fontawesome/css/all.min.css'
-        filter='cssrewrite' output='backoffice/css/style.css'
-         %}
-        <link rel="stylesheet" href="{{ absolute_url(asset_url)}}" />
-    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/assets/vendor_components/bootstrap/dist/css/bootstrap.min.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/css/master_style.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/css/skins/_all-skins.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('backoffice/assets/fontawesome/css/all.min.css')) }}">
   {% endblock %}
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -209,18 +204,13 @@
 </div>
 
     {% block javascripts %}
-    {% javascripts 
-        'backoffice/assets/vendor_components/jquery/dist/jquery.min.js'
-        'backoffice/assets/vendor_components/popper/dist/popper.min.js'
-        'backoffice/assets/vendor_components/bootstrap/dist/js/bootstrap.min.js'
-        'backoffice/assets/vendor_components/jquery-slimscroll/jquery.slimscroll.min.js'
-        'backoffice/assets/vendor_components/fastclick/lib/fastclick.js'
-        'backoffice/js/template.js'
-        'backoffice/js/demo.js'
-        output='backoffice/js/app.js'
-    %}
-    <script src="{{ absolute_url(asset_url)}}"></script>
-    {% endjavascripts %}
+      <script src="{{ absolute_url(asset('backoffice/assets/vendor_components/jquery/dist/jquery.min.js')) }}"></script>
+      <script src="{{ absolute_url(asset('backoffice/assets/vendor_components/popper/dist/popper.min.js')) }}"></script>
+      <script src="{{ absolute_url(asset('backoffice/assets/vendor_components/bootstrap/dist/js/bootstrap.min.js')) }}"></script>
+      <script src="{{ absolute_url(asset('backoffice/assets/vendor_components/jquery-slimscroll/jquery.slimscroll.min.js')) }}"></script>
+      <script src="{{ absolute_url(asset('backoffice/assets/vendor_components/fastclick/lib/fastclick.js')) }}"></script>
+      <script src="{{ absolute_url(asset('backoffice/js/template.js')) }}"></script>
+      <script src="{{ absolute_url(asset('backoffice/js/demo.js')) }}"></script>
     {% endblock %}
 	
 </body>

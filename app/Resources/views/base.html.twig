@@ -254,21 +254,16 @@
 </div>
 
 {% block javascripts %}
-    {% javascripts
-        'ressources/js/jquery.js'
-        'ressources/js/bootstrap.min.js'
-        'ressources/js/revolution.min.js'
-        'ressources/js/bxslider.js'
-        'ressources/js/jquery.appear.js'
-        'ressources/js/wow.js'
-        'ressources/js/knob.js'
-        'ressources/js/validate.js'
-        'ressources/vendor/swiper/js/swiper.js'
-        'ressources/js/script.js'
-        output='ressources/js/app.js'
-    %}
-        <script src="{{ absolute_url(asset_url)}}"></script>
-    {% endjavascripts %}
+      <script src="{{ absolute_url(asset('ressources/js/jquery.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/js/bootstrap.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/js/revolution.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/js/bxslider.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/js/jquery.appear.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/js/wow.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/js/knob.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/js/validate.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/vendor/swiper/js/swiper.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('ressources/js/script.js')) }}"></script>
 {% endblock %}
 <script>
     var swiper = new Swiper('.swiper-container', {
