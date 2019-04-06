@@ -49,7 +49,7 @@
 											{% for service in services %}
 												<div id="tab-{{ loop.index }}" class="text-justify">
 													<h4>Dream Maker {{ service.titre }}</h4>
-													<img src="{{ absolute_url(vich_uploader_asset(presentation, 'imageFile')) }}" alt="Dream Maker {{ service.titre }}" style="float: left; padding: 10px 10px 5px 0;">
+													<img src="{{ absolute_url(vich_uploader_asset(service, 'imageFile')) }}" alt="Dream Maker {{ service.titre }}" style="float: left; padding: 10px 10px 5px 0;">
 													{{ service.contenu|raw }}
 												</div>
 											{% endfor %}
