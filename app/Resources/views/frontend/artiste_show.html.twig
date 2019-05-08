@@ -17,7 +17,6 @@
 						<img src="{{ asset('uploads/artiste/'~ artiste.imageName) | imagine_filter('artiste_accueil') }}" alt="{{ artiste.pseudonyme }}" class="img-responsive" width="260" />
 						<div class="author-comment">
 							<h4><strong>{{ artiste.pseudonyme }}</strong></h4>
-							{{ artiste.biographie|raw }}
 							{% if artiste.manager %}
 								<label for="">Manager:</label> {{ artiste.manager }}<br>
 							{% endif %}
@@ -27,30 +26,30 @@
 							{% if artiste.website %}
 								<label for="">Website:</label> <a href="http://{{ artiste.website }}" target="_blank">http://{{ artiste.website }}</a> <br>
 							{% endif %}
-							<label for="">Genre:</label>
-							<span class="badge genre"><a href="#">Zouglou</a></span>
 							{% if artiste.genre %}
-								{% for tag in artiste.genre|join("' ") %}
-									<span class="badge badge-primary"><a href="#" title="Voir les autres artistes {{ tag }}">{{ tag }}</a></span>
+								<label for="">Genre:</label>
+								{% for tag in artiste.genre|split(',')  %}
+									<span class="badge genre"><a href="#" title="Voir les autres artistes {{ tag }}">{{ tag }}</a></span>
 								{% endfor %}
-							{% endif %}
-						</div>
-						<div class="row col-md-12 suivre-artistes">
-							{% if artiste.youtube %}
-								<a href="https://www.youtube.com/{{ artiste.youtube }}"><i class="fa fa-youtube fa-2x"></i></a>
-							{% endif %}
-							{% if artiste.facebook %}
-								<a href="https://facebook.com/{{ artiste.facebook }}"><i class="fa fa-facebook-square fa-2x"></i></a>
-							{% endif %}
-							{% if artiste.twitter %}
-								<a href="https://twiter.com/{{ artiste.twitter }}"><i class="fa fa-twitter-square fa-2x"></i></a>
-							{% endif %}
-							{% if artiste.instagram %}
-								<a href="https://instagram.com/{{ artiste.instagram }}"><i class="fa fa-instagram fa-2x"></i></a>
-							{% endif %}
+							{% endif %} <br><br>
+							<div class="row col-md-12 suivre-artistes">
+								{% if artiste.youtube %}
+									<a href="https://www.youtube.com/{{ artiste.youtube }}"><i class="fa fa-youtube fa-2x"></i></a>
+								{% endif %}
+								{% if artiste.facebook %}
+									<a href="https://facebook.com/{{ artiste.facebook }}"><i class="fa fa-facebook-square fa-2x"></i></a>
+								{% endif %}
+								{% if artiste.twitter %}
+									<a href="https://twiter.com/{{ artiste.twitter }}"><i class="fa fa-twitter-square fa-2x"></i></a>
+								{% endif %}
+								{% if artiste.instagram %}
+									<a href="https://instagram.com/{{ artiste.instagram }}"><i class="fa fa-instagram fa-2x"></i></a>
+								{% endif %}
 
 
+							</div>
 						</div>
+						{{ artiste.biographie|raw }}
 						<div class="clear"></div>
 					</div>
 					{% if artiste.oeuvre %}
@@ -66,10 +65,10 @@
 										<li class="filter" data-filter="all">
 											<span>Tout</span>
 										</li>
-										<li class="filter" data-filter=".album">
+										<li class="filter" data-filter=".single">
 											<span>Single</span>
 										</li>
-										<li class="filter" data-filter=".single">
+										<li class="filter" data-filter=".album">
 											<span>Albums</span>
 										</li>
 									</ul>
@@ -94,6 +93,11 @@
 						</section>
 
 					{% endif %}
+					<div class="pull-right wow fadeInDown" style="margin-bottom: 50px;">
+						<a href="{{ absolute_url(path('frontend_label_index')) }}" title="Retour à la page du label">
+							<i class="fa fa-reply fa-2x"></i> Retour
+						</a>
+					</div>
 				</div>
 
 

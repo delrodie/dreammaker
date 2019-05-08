@@ -1,3 +1,141 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ album.titre }}{% endblock %}
+{% block title %}{% endblock %}
+{% block body %}
+    <section class="page-banner" style="background-image:url({{ absolute_url(asset('ressources/images/bg/bg-page.jpg')) }});">
+        <div class="auto-container">
+            <h1>{{ album.artiste.pseudonyme }} : {{ album.titre }}</h1>
+        </div>
+    </section>
+    <section id="blog" class="blog section">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="author wow fadeInUp">
+                        <img src="{{ asset('uploads/album/'~ album.imageName) | imagine_filter('artiste_accueil') }}" alt="{{ album.titre }}" class="img-responsive" width="260" />
+                        <div class="author-comment">
+                            <h4><strong>{{ album.titre }}</strong></h4>
+                            <label for="">Interprète:</label> {{ album.artiste.pseudonyme }} <br>
+                            <label for="">Auteurs:</label> YABONGO LOVA (1-3-5) / LOVA YABONGO <br>
+                            <label for="">Compositeurs:</label> {{ album.compositeur }} <br>
+                            <label for="">Choeurs:</label> {{ album.choeur }} <br>
+                            <label for="">Arrangeurs:</label> {{ album.arrangeur }} <br>
+                            <label for="">Producteur:</label> {{ album.producteur }} <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="">Mixages:</label> {{ album.mixage }} <br>
+                                <label for="">Master:</label> {{ album.master }} <br>
+                                <label for="">Distribution:</label> {{ album.distribution }} <br>
+                                {% if album.artiste.manager %}<label for="">Manager:</label> {{ album.artiste.manager }} <br>{% endif %}
+                                {% if album.artiste.email %}<label for="">Email:</label> {{ album.artiste.email }} <br>{% endif %}
+                                {% if album.artiste.website %}<label for="">Website:</label> {{ album.artiste.website }} <br>{% endif %}
+                                <label for="">Genre:</label>
+                                {% for tag in album.artiste.genre|split(',')  %}
+                                    <span class="badge genre"><a href="#" title="Voir les autres artistes {{ tag }}">{{ tag }}</a></span>
+                                {% endfor %}
+                                <br>
+                                <div class="share-btn top60">
+                                    <a class="fb-share-button" data-href="{{ absolute_url(path('frontend_label_album',{'slug': album.slug})) }}" data-layout="button_count"></a>
+                                    <!--<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Titre de a page" style="padding-top: 15px;" >Partager</a>-->
+                                    <a class="twitter-share-button"
+                                       href="https://twitter.com/intent/tweet"
+                                       data-size="small"
+                                       data-text="{{ album.titre }}, nouvel album de {{ album.artiste.pseudonyme }}"
+                                       data-url="{{ absolute_url(path('frontend_label_album',{'slug': album.slug})) }}"
+                                       data-hashtags="DreamMakerDistribution,{{ album.artiste.pseudonyme }}"
+                                       data-via="Dreammaker225"
+                                       data-related="delrodie,twitter">
+                                        Tweet
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="top60">
+                            <h3>Achêter l'album </h3>
+                        </div>
+                        <div class="row col-md-12 acheter-album">
+                            {% if album.spotify %}<a href="{{ album.spotify }}" class="vente" title="Acheter l'album sur Spotify" target="_blank"><div id="spotify"></div></a>{% endif %}
+                            {% if album.deezer %}<a href="{{ album.deezer }}" class="vente" title="Acheter l'album sur Deezer" target="_blank"><div id="deezer"></div></a>{% endif %}
+                            {% if album.itunes %}<a href="{{ album.itunes }}" class="vente" title="Acheter l'album sur sur Itunes" target="_blank"><div id="itunes"></div></a>{% endif %}
+                            {% if album.googlePlay %}<a href="{{ album.googlePlay }}" class="vente" title="Acheter l'album sur sur Google Play" target="_blank"><div id="googleplay"></div></a>{% endif %}
+                            {% if album.amazon %}<a href="{{ album.amazon }}" class="vente" title="Acheter l'album sur sur Amazon" target="_blank"><div id="amazon"></div></a>{% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row top60">
+                        <div class="col-md-12 text-left" role="albums">
+                            <ul class="nav nav-tabs">
+                                <li role="albums" class="active"><a href="#titres" aria-controls="titre" role="tab" data-toggle="tab">
+                                        <h4>Titre</h4></a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="titre">
+                                    <div class="list-group">
+                                        {% for chanson in album.pistes %}
+                                            <a href="#" class="list-group-item"><span class="badge">{{ chanson.duree }}</span>{{ chanson.piste }}. {{ chanson.titre }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-comments">
+                        <div class="title-head wow fadeInUp"></div>
+                        <ul class="comment-list">
+                            <div class="fb-comments" data-href="http://dreammaker-ci.com/" data-numposts="5"></div>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="sidebar">
+                        {{ render(url('frontend_bloc_droit')) }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ absolute_url(asset('ressources/css/icon.css')) }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('ressources/js/jquery.fancybox.pack.js')) }}"></script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+{% endblock %}
