@@ -82,11 +82,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="pull-right wow fadeInDown" style="margin-bottom: 50px;">
+                        <a href="{{ absolute_url(path('frontend_label_artiste',{'slug': album.artiste.slug})) }}" title="Retour à l'artiste">
+                            <i class="fa fa-reply fa-2x"></i> Retour
+                        </a>
+                    </div>
 
                     <div class="post-comments">
                         <div class="title-head wow fadeInUp"></div>
                         <ul class="comment-list">
-                            <div class="fb-comments" data-href="http://dreammaker-ci.com/" data-numposts="5"></div>
+                            <div class="fb-comments" data-href="{{ absolute_url(path('frontend_label_album',{'slug': album.slug})) }}" data-numposts="5"></div>
                         </ul>
                     </div>
                 </div>
@@ -104,6 +109,94 @@
 
         </div>
     </section>
+{% endblock %}
+{% block meta %}
+    <meta name="keywords" content="{{ album.artiste.pseudonyme }}, {{ album.artiste.genre|join(', ') }}"  />
+    <meta name="description" content="{{ album.artiste.resume|raw }}" />
+    <meta name="revisit" content="7 days" />
+    <meta name="revisit-after" content="7 days">
+    <meta name="Author" content="Dream Maker, Delrodie AMOIKON">
+    <meta name="Copyright" content="www.dreammaker-ci.com">
+    <meta name="Content-Language" content="FR">
+    <meta name="distribution" content="global" />
+    <meta name="Audience" content="All" />
+    <meta name="Robots" content="full">
+
+    <link rel="canonical" href="{{ absolute_url(path('frontend_label_album',{'slug': album.slug})) }}" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="Item" />
+    <meta property="og:title" content="{{ album.artiste.pseudonyme }}" />
+    <meta property="og:description" content="{{ album.artiste.resume|raw }}" />
+    <meta property="og:url" content="{{ absolute_url(path('frontend_label_album',{'slug': album.slug})) }}" />
+    <meta property="og:site_name" content="Dream Maker CI" />
+    <meta property="article:section" content="Item" />
+    <meta property="article:published_time" content="{{ album.artiste.publieLe|date('Y-m-d') }}T{{ album.artiste.publieLe|date('H:i:s') }}+00:00" />
+    <meta property="article:modified_time" content="{{ album.artiste.modifieLe|date('Y-m-d') }}T{{ album.artiste.modifieLe|date('H:i:s') }}+00:00" />
+    <meta property="og:updated_time" content="{{ album.artiste.modifieLe|date('Y-m-d') }}T{{ album.artiste.modifieLe|date('H:i:s') }}+00:00" />
+    <meta property="og:image" content="{{ absolute_url(vich_uploader_asset(album, 'imageFile')) }}" />
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="{{ album.artiste.resume|raw }}"/>
+    <meta name="twitter:title" content="{{ album.artiste.pseudonyme }}"/>
+    <meta name="twitter:domain" content="DREAM MAKER"/>
+    <meta name="twitter:image:src" content="{{ absolute_url(vich_uploader_asset(album, 'imageFile')) }}"/>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "NewsArticle",
+			"mainEntityOfPage": {
+				"@type": "WebPage",
+				"@id": "{{ absolute_url(path('frontend_label_album',{'slug': album.slug})) }}"
+			},
+			"headline": "{{ album.artiste.pseudonyme }}",
+			"image": [
+				"{{ absolute_url(vich_uploader_asset(album, 'imageFile')) }}",
+				"{{ absolute_url(vich_uploader_asset(album, 'imageFile')) }}"
+			],
+			"datePublished": "{{ album.artiste.publieLe|date('Y-m-d') }}T{{ album.artiste.publieLe|date('H:i:s') }}+00:00",
+			"dateModified": "{{ album.artiste.modifieLe|date('Y-m-d') }}T{{ album.artiste.modifieLe|date('H:i:s') }}+00:00",
+			"author": {
+				"@type": "Person",
+				"name": "Delrodie AMOIKON"
+			},
+			"publisher": {
+				"@type": "Organization",
+				"name": "DREAM MAKER :: Maison de distribution, production et de communication événementielle",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "{{ absolute_url(asset('ressources/images/logo-02.png')) }}"
+				}
+			},
+			"description": "{{ album.artiste.resume|raw }}"
+		}
+	</script>
+
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Organization",
+			"url": "{{ absolute_url(path('homepage')) }}",
+			"contactPoint": [{
+				"@type": "ContactPoint",
+				"telephone": "+225 58 99 99 79",
+				"contactType": "Direction",
+				"contactOption": "TollFree",
+				"areaServed": "FR"
+			},{
+				"@type": "ContactPoint",
+				"telephone": "+225 58 99 99 79",
+				"contactType": "Direction",
+				"contactOption": "TollFree",
+				"areaServed": [
+					"CI",
+					"FR"
+				],
+				"availableLanguage": [
+					"French",
+					"English"
+				]
+			}]
+		}
+	</script>
 {% endblock %}
 
 {% block stylesheets %}

@@ -182,13 +182,13 @@
                             <div class="swiper-slide wow fadeInDown">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a href="#">
+                                        <a href="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}">
                                             <!--<img src="{{ vich_uploader_asset(actualite, 'imageFile') }}" alt="">-->
                                             <img src="{{ asset('uploads/actualite/'~ actualite.imageName) | imagine_filter('actualite_accueil') }}" alt="{{ actualite.titre }}"  class="img-responsive"/>
                                         </a>
                                     </div>
                                     <div class="col-sm-12">
-                                        <h4><a href="#">{{ actualite.titre }}</a></h4>
+                                        <h4><a href="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}">{{ actualite.titre }}</a></h4>
                                         <p class="text">
                                             {{ actualite.resume|raw }}
                                         </p>
@@ -199,12 +199,12 @@
                             <div class="swiper-slide wow fadeInLeft">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a href="#">
+                                        <a href="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}">
                                             <img src="{{ asset('uploads/actualite/'~ actualite.imageName) | imagine_filter('actualite_accueil') }}" alt="{{ actualite.titre }}"  class="img-responsive"/>
                                         </a>
                                     </div>
                                     <div class="col-sm-12">
-                                        <h4><a href="#">{{ actualite.titre }}</a></h4>
+                                        <h4><a href="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}">{{ actualite.titre }}</a></h4>
                                         <p class="text">
                                             {{ actualite.resume|raw }}
                                         </p>
@@ -235,7 +235,7 @@
                             <div class="col-md-3 col-sm-6 col-xs-6">
                                 <article class="member wow fadeInRight" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
                                     <figure class="ressources/image">
-                                        <a href="#">
+                                        <a href="{{ absolute_url(path('frontend_label_artiste', {'slug': artiste.slug})) }}">
                                             <img src="{{ asset('uploads/artiste/'~ artiste.imageName) | imagine_filter('artiste_accueil') }}" alt="{{ artiste.pseudonyme }}"  class="img-responsive"/>
                                         </a>
                                         <span class="curve"></span>
@@ -268,7 +268,7 @@
                             <div class="col-md-3 col-sm-6 col-xs-6">
                                 <article class="member wow fadeInDown" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
                                     <figure class="ressources/image">
-                                        <a href="#">
+                                        <a href="{{ absolute_url(path('frontend_label_artiste', {'slug': artiste.slug})) }}">
                                             <img src="{{ asset('uploads/artiste/'~ artiste.imageName) | imagine_filter('artiste_accueil') }}" alt="{{ artiste.pseudonyme }}"  class="img-responsive"/>
                                         </a>
                                         <span class="curve"></span>
@@ -302,7 +302,7 @@
 
                 </div>
                 <div class="lire-suite text-right">
-                    <h3><a href="#">&raquo; Voir tous les artistes</a></h3>
+                    <h3><a href="{{ absolute_url(path('frontend_label_index')) }}" >&raquo; Voir tous les artistes</a></h3>
                 </div>
             </div>
         </section>
