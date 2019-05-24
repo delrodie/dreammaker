@@ -29,7 +29,7 @@ class EventType extends AbstractType
                 'attr'=>['class'=>'form-control', 'data-role'=>'tagsinput', 'placeholder'=>'Les mots clés']
             ])
             ->add('statut', CheckboxType::class,[
-                'attr'=>['class'=>'custom-input-control']
+                'attr'=>['class'=>'custom-input-control'], 'required'=> false
             ])
             ->add('dateEvent', TextType::class,[
                 'attr'=>['class'=>'form-control datepicker', 'placeholder'=>"Date debut de l'event"]

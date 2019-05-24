@@ -71,6 +71,11 @@
                                 <button type="submit" class="btn btn-info">Modifier</button>
                             </div>
                             {{ form_end(edit_form) }}
+                            {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Êtes-vous sur de vouloir supprimer cet évènement ?");'}}) }}
+                            <button type="submit" value="Supprimer" class="btn btn-danger">
+                                <i class="fa fa-trash"></i> Supprimer
+                            </button>
+                            {{ form_end(delete_form) }}
                         </div>
                     </div>
                 </div>
