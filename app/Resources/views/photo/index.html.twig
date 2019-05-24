@@ -1,0 +1,56 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}{{ parent () }} Gestion des photos{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>Gestion des photos</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_photo_index'))}}">photos</a></li>
+            <li class="breadcrumb-item active">Liste </li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="box box-warning">
+            <div class="box-header text-right">
+                <a href="{{ absolute_url(path('backend_photo_new'))}}" class="btn btn-social btn-primary"><i class="fa fa-plus"></i>Ajouter un photo</a>
+            </div>
+
+            <div class="row">
+                {% for photo in photos %}
+                    <div class="col-md-12 col-lg-3">
+                        <div class="box box-default" style="height: 400px">
+                            <img class="card-img-top img-responsive" src="{{ vich_uploader_asset(photo, 'imageFile') }}" alt="{{ photo.titre }}">
+                            <div class="box-body">
+                                <h4 class="card-title">
+                                    {% if photo.statut %}
+                                        <span class="badge badge-success">Actif</span>
+                                    {% else %}
+                                        <span class="badge badge-danger">Désactivé</span>
+                                    {% endif %}
+                                    {{ photo.titre }}
+                                </h4>
+                                <p class="card-text text-justify">
+                                    <input type="text" value="{{ absolute_url(vich_uploader_asset(photo, 'imageFile')) }}" class="form-control">
+                                </p>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="{{ absolute_url(path('backend_photo_edit', {'slug': photo.slug})) }}" >
+                                        <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Modifier</button>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                {% else %}
+
+                {% endfor %}
+            </div>
+
+    </section>
+{% endblock %}

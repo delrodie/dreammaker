@@ -22,7 +22,7 @@ class ActualiteType extends AbstractType
                 'attr'=>['class'=>'form-control', 'placeholder'=>"Titre de l'actualité", 'autocomplete'=>"off"]
             ])
             ->add('contenu', TextareaType::class,[
-                'attr' =>['class'=>'textarea', 'style' => 'width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;']
+                'attr' =>['class'=>'form-control summernote', 'style' => 'width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;']
             ])
             //->add('resume')
             ->add('tags', TextType::class,[

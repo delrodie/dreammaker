@@ -9,8 +9,8 @@
 	//bootstrap WYSIHTML5 - text editor
     $('#appbundle_presentation_contenu').wysihtml5();
     $('#appbundle_service_contenu').wysihtml5();
-    $('#appbundle_actualite_contenu').wysihtml5();
-    $('#appbundle_event_contenu').wysihtml5();
+    $('#appbundle_actualite_contenu').summernote();
+    //$('#appbundle_event_contenu').wysihtml5();
     $('#appbundle_artiste_biographie').wysihtml5();
     $('.contenu').wysihtml5();
     $('.select2').select2()

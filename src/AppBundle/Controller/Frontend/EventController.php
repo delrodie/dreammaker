@@ -19,7 +19,7 @@ class EventController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $events = $em->getRepository('AppBundle:Event')->findAll();
+        $events = $em->getRepository('AppBundle:Event')->findListEvent();
 
         return $this->render("frontend/events.html.twig",[
             'events' => $events,
