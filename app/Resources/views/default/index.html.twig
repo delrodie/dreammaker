@@ -321,10 +321,11 @@
                         <div class="auto-container">
                             <div class="text-side">
                                 <div class="sec-title">
-                                    <h2>{{ event.titre }}</h2>
+                                    <a href="{{ absolute_url(path('frontend_event_show',{'slug': event.slug})) }}"><h2>{{ event.titre }}</h2></a>
+
                                 </div>
                                 <div class="sec-text">
-                                    <p>{{ event.resume }}</p>
+                                    <p>{{ event.resume|raw }}</p>
                                 </div>
                             </div>
 

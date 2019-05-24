@@ -142,7 +142,7 @@
                         <li{% if (current_menu == 'actualite') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_actualite_index')) }}">Actualités</a></li>
                         <li{% if (current_menu == 'presentation') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_presentation_index')) }}">Qui sommes-nous?</a></li>
                         <li{% if (current_menu == 'label') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_label_index')) }}">Notre label</a></li>
-                        <li><a href="#">Events</a></li>
+                        <li{% if (current_menu == 'event') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_event_index')) }}">Events</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -204,8 +204,8 @@
                                 <ul>
                                     <li><a href="{{ absolute_url(path('frontend_label_index')) }}">Notre label</a></li>
                                     <li><a href="{{ absolute_url(path('frontend_label_index')) }}">Nos artistes</a></li>
-                                    <li><a href="{{ absolute_url(path('frontend_label_index')) }}"">Nos albums</a></li>
-                                    <li><a href="#">Nos events</a></li>
+                                    <li><a href="{{ absolute_url(path('frontend_label_index')) }}">Nos albums</a></li>
+                                    <li><a href="{{ absolute_url(path('frontend_event_index')) }}">Nos events</a></li>
                                 </ul>
                             </div>
                         </div>

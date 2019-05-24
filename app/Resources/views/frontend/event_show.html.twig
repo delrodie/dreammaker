@@ -1,0 +1,187 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ event.titre }}{% endblock %}
+
+{% block body %}
+	<section class="page-banner" style="background-image:url({{ absolute_url(asset('ressources/images/bg/bg-page.jpg')) }});">
+		<div class="auto-container">
+			<h1>Les events</h1>
+		</div>
+	</section>
+	<section id="blog" class="blog section">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="post-item">
+						<h2 class="wow fadeInLeft">{{ event.titre }}</h2>
+						<div class="post wow fadeInUp">
+							<!-- Image -->
+							<img class="img-responsive" src="{{ asset('uploads/event/'~ event.imageName) | imagine_filter('page_img') }}" alt="{{ event.titre }}" />
+							<div class="post-content wow fadeInUp">
+								<!-- Meta -->
+								<div class="posted-date">{{ event.publieLe|date('d M Y') }}</div>
+								{{ event.contenu|raw }}
+								<div class="share-btn">
+									<a class="fb-share-button" data-href="{{ absolute_url(path('frontend_event_show',{'slug': event.slug})) }}" data-layout="button_count"></a>
+									<!--<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Titre de a page" style="padding-top: 15px;" >Partager</a>-->
+									<a class="twitter-share-button"
+									   href="https://twitter.com/intent/tweet"
+									   data-size="small"
+									   data-text="{{ event.resume|raw }}"
+									   data-url="{{ absolute_url(path('frontend_event_show',{'slug': event.slug})) }}"
+									   data-hashtags="DreamMakerDistribution,{{ event.tags }}"
+									   data-via="Dreammaker225"
+									   data-related="delrodie,twitter" target="_blank">
+										Tweet
+									</a>
+								</div>
+								<div class="col-md-12 pull-right text-right">
+									<a href="{{ absolute_url(path('frontend_event_index')) }}" title="Retour aux events"><i class="fa fa-reply"></i> Retour aux events</a>
+								</div>
+							</div>
+
+						</div>
+
+					</div><!-- End Post -->
+
+					<div class="post-comments">
+						<div class="title-head wow fadeInUp"></div>
+						<ul class="comment-list">
+							<div class="fb-comments" data-href="{{ absolute_url(path('frontend_event_show',{'slug': event.slug})) }}" data-numposts="5"></div>
+						</ul>
+					</div>
+
+
+				</div>
+
+
+				<div class="col-md-4">
+
+					<div class="sidebar">
+
+						{{ render(url('frontend_bloc_droit')) }}
+					</div>
+
+				</div><!-- Blog Sidebar Ends -->
+
+			</div>
+
+		</div>
+	</section>
+{% endblock %}
+{% block meta %}
+	<meta name="keywords" content="{{ event.tags|join(', ') }}"  />
+	<meta name="description" content="{{ event.resume|raw }}" />
+	<meta name="revisit" content="7 days" />
+	<meta name="revisit-after" content="7 days">
+	<meta name="Author" content="Dream Maker, Delrodie AMOIKON">
+	<meta name="Copyright" content="www.dreammaker-ci.com">
+	<meta name="Content-Language" content="FR">
+	<meta name="distribution" content="global" />
+	<meta name="Audience" content="All" />
+	<meta name="Robots" content="full">
+
+	<link rel="canonical" href="{{ absolute_url(path('frontend_event_show',{'slug': event.slug})) }}" />
+	<meta property="og:locale" content="fr_FR" />
+	<meta property="og:type" content="Item" />
+	<meta property="og:title" content="{{ event.titre }}" />
+	<meta property="og:description" content="{{ event.resume|raw }}" />
+	<meta property="og:url" content="{{ absolute_url(path('frontend_event_show',{'slug': event.slug})) }}" />
+	<meta property="og:site_name" content="Dream Maker CI" />
+	<meta property="article:section" content="Item" />
+	<meta property="article:published_time" content="{{ event.publieLe|date('Y-m-d') }}T{{ event.publieLe|date('H:i:s') }}+00:00" />
+	<meta property="article:modified_time" content="{{ event.modifieLe|date('Y-m-d') }}T{{ event.modifieLe|date('H:i:s') }}+00:00" />
+	<meta property="og:updated_time" content="{{ event.modifieLe|date('Y-m-d') }}T{{ event.modifieLe|date('H:i:s') }}+00:00" />
+	<meta property="og:image" content="{{ absolute_url(vich_uploader_asset(event, 'imageFile')) }}" />
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:description" content="{{ event.resume|raw }}"/>
+	<meta name="twitter:title" content="{{ event.titre }}"/>
+	<meta name="twitter:domain" content="DREAM MAKER"/>
+	<meta name="twitter:image:src" content="{{ absolute_url(vich_uploader_asset(event, 'imageFile')) }}"/>
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "NewsArticle",
+			"mainEntityOfPage": {
+				"@type": "WebPage",
+				"@id": "{{ absolute_url(path('frontend_event_show',{'slug': event.slug})) }}"
+			},
+			"headline": "{{ event.titre }}",
+			"image": [
+				"{{ absolute_url(vich_uploader_asset(event, 'imageFile')) }}",
+				"{{ absolute_url(vich_uploader_asset(event, 'imageFile')) }}"
+			],
+			"datePublished": "{{ event.publieLe|date('Y-m-d') }}T{{ event.publieLe|date('H:i:s') }}+00:00",
+			"dateModified": "{{ event.modifieLe|date('Y-m-d') }}T{{ event.modifieLe|date('H:i:s') }}+00:00",
+			"author": {
+				"@type": "Person",
+				"name": "Delrodie AMOIKON"
+			},
+			"publisher": {
+				"@type": "Organization",
+				"name": "DREAM MAKER :: Maison de distribution, production et de communication événementielle",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "{{ absolute_url(asset('ressources/images/logo-02.png')) }}"
+				}
+			},
+			"description": "{{ event.resume|raw }}"
+		}
+	</script>
+
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Organization",
+			"url": "{{ absolute_url(path('homepage')) }}",
+			"contactPoint": [{
+				"@type": "ContactPoint",
+				"telephone": "+225 58 99 99 79",
+				"contactType": "Direction",
+				"contactOption": "TollFree",
+				"areaServed": "FR"
+			},{
+				"@type": "ContactPoint",
+				"telephone": "+225 58 99 99 79",
+				"contactType": "Direction",
+				"contactOption": "TollFree",
+				"areaServed": [
+					"CI",
+					"FR"
+				],
+				"availableLanguage": [
+					"French",
+					"English"
+				]
+			}]
+		}
+	</script>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+	<script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+{% endblock %}
