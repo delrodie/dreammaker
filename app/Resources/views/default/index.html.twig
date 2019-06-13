@@ -78,7 +78,6 @@
             </article>
         </div>
     </section>
-
     <section class="features hidden-lg hidden-md hidden-print" style="background-image:url(asset('ressources/images/bg/accueil.jpg'));">
         <div class="auto-container">
             <div class="swiper-container">
@@ -168,6 +167,11 @@
         </div>
     </section>
 
+    <section class="actualite">
+        <div class="auto-container clearfix">
+            <img src="{{ asset('ressources/images/teaser.jpg') }}" alt="" class="img-responsive">
+        </div>
+    </section>
     <section class="actualite">
         <div class="auto-container">
             {% if (actualites) %}
@@ -308,6 +312,11 @@
         </section>
     {% endif %}
 
+    <section class="actualite">
+        <div class="auto-container clearfix">
+            <img src="{{ asset('ressources/images/teaser.jpg') }}" alt="Concours" class="img-responsive">
+        </div>
+    </section>
     {% if (events) %}
         <section class="successfull-stories curved-carousel event">
             <div class="auto-container">
