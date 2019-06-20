@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="box box-default">
-                        <img class="" src="{{ vich_uploader_asset(event, 'imageFile') }}" alt="{{ event.titre }}" style="float: left; padding-right: 15px;">
+                        <img src="{{ vich_uploader_asset(event, 'imageFile') }}" alt="{{ event.titre }}" style="float: left; padding-right: 15px;" class="card-img-top img-responsive">
                         <div class="box-body">
                             <span class="badge badge-primary pull-right">{{ event.dateEvent|date('d M Y') }}</span>
                             <h4 class="card-title">

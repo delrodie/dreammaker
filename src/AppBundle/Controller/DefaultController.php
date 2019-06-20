@@ -16,7 +16,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $actualites = $em->getRepository('AppBundle:Actualite')->findList(1,4);
         $artistes = $em->getRepository('AppBundle:Artiste')->findArtiste(4);
-        $events = $em->getRepository('AppBundle:Event')->findAll();
+        $events = $em->getRepository('AppBundle:Event')->findListEvent();
         return $this->render('default/index.html.twig', [
             'current_menu' => 'accueil',
             'actualites' => $actualites,

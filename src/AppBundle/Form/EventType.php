@@ -32,7 +32,7 @@ class EventType extends AbstractType
                 'attr'=>['class'=>'custom-input-control'], 'required'=> false
             ])
             ->add('dateEvent', TextType::class,[
-                'attr'=>['class'=>'form-control datepicker', 'placeholder'=>"Date debut de l'event"]
+                'attr'=>['class'=>'form-control datepicker', 'placeholder'=>"Date debut de l'event", 'autocomplete'=>"off"]
             ])
             ->add('imageFile', VichImageType::class,[
                 'required' => false,

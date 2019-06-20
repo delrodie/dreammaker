@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Controller\Frontend\EventController;
+
 /**
  * EventRepository
  *
@@ -43,5 +45,17 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
                 ->getQuery()->getResult()
                 ;
         }
+    }
+
+    /**
+     * Liste des events par ordre decroissant
+     * @uses EventController
+     */
+    public function findAllEvent()
+    {
+        return $this->createQueryBuilder('e')
+                    ->orderBy('e.dateEvent', 'DESC')
+                    ->getQuery()->getResult();
+            ;
     }
 }
