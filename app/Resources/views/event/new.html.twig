@@ -82,8 +82,8 @@
 
 {% block stylesheets %}
     {{ parent()}}
+    <link rel="stylesheet" href="{{ asset('backoffice/assets/vendor_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
     {% stylesheets
-        'backoffice/assets/vendor_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'
         'backoffice/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css'
         'backoffice/tags/tagsinput.css'
         filter='cssrewrite' output='backoffice/css/editeur.css'
@@ -95,8 +95,8 @@
 
 {% block javascripts %}
     {{ parent()}}
+    <script src="{{ asset('backoffice/assets/vendor_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
     {% javascripts
-        'backoffice/assets/vendor_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'
         'backoffice/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js'
         'backoffice/js/pages/editor.js'
         'backoffice/tags/tagsinput.js'
