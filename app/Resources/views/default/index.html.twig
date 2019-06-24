@@ -171,6 +171,19 @@
         <div class="auto-container clearfix">
             <img src="{{ asset('ressources/images/teaser.jpg') }}" alt="" class="img-responsive">
         </div>
+        <br>
+        <div class="auto-container clearfix">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="{{ path('frontend_concours_show', {'slug': concours.slug}) }}">
+                        <button class="btn btn-primary btn-lg">Presentation du concours</button>
+                    </a>
+                    <a href="#">
+                        <button class="btn btn-warning btn-lg">Règlements du concours</button>
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
     <section class="actualite">
         <div class="auto-container">
@@ -315,6 +328,19 @@
     <section class="actualite">
         <div class="auto-container clearfix">
             <img src="{{ asset('ressources/images/teaser.jpg') }}" alt="Concours" class="img-responsive">
+        </div>
+        <br>
+        <div class="auto-container clearfix">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="{{ path('frontend_concours_show', {'slug': concours.slug}) }}">
+                        <button class="btn btn-primary btn-lg">Presentation du concours</button>
+                    </a>
+                    <a href="#">
+                        <button class="btn btn-warning btn-lg">Règlements du concours</button>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
     {% if (events) %}

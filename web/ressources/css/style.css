@@ -2280,12 +2280,16 @@ ul,li{
 }
 
 .client-logos .logo-scroller .slide-item{
-	text-align:center;	
+	text-align:center;
+	margin-bottom: 100px;
+	padding-bottom: 100px;
 }
 
 .client-logos .logo-scroller .slide-item img{
 	position:relative;
-	display:inline-block;	
+	display:inline-block;
+	padding-bottom: 100px;
+	margin-bottom: 100px;
 }
 
 .client-logos .logo-scroller .bx-viewport{

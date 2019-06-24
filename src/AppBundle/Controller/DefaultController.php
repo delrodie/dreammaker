@@ -17,11 +17,13 @@ class DefaultController extends Controller
         $actualites = $em->getRepository('AppBundle:Actualite')->findList(1,4);
         $artistes = $em->getRepository('AppBundle:Artiste')->findArtiste(4);
         $events = $em->getRepository('AppBundle:Event')->findListEvent();
+        $concour = $em->getRepository("AppBundle:Concours")->findOneBy(['statut'=>1], ['id'=>'DESC']);
         return $this->render('default/index.html.twig', [
             'current_menu' => 'accueil',
             'actualites' => $actualites,
             'artistes' => $artistes,
-            'events' => $events
+            'events' => $events,
+            'concours' => $concour
         ]);
     }
 
