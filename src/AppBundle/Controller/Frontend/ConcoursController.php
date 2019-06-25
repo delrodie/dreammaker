@@ -30,9 +30,9 @@ class ConcoursController extends Controller
      */
     public function showAction(Concours $concours)
     {
-        return $this->render("concours_show.html.twig",[
+        return $this->render("frontend/concours_show.html.twig",[
             'concour' => $concours,
-            'current_menu' => 'actualite'
+            'current_menu' => 'event'
         ]);
     }
 
