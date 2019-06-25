@@ -93,26 +93,16 @@
 						</section>
 
 					{% endif %}
-					<div class="share-btn">
-						<a class="fb-share-button" data-href="{{ absolute_url(path('frontend_label_artiste',{'slug': artiste.slug})) }}" data-layout="button_count"></a>
-						<!--<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Titre de a page" style="padding-top: 15px;" >Partager</a>-->
-						<a class="twitter-share-button"
-						   href="https://twitter.com/intent/tweet"
-						   data-size="small"
-						   data-text="{{ artiste.resume|raw }}"
-						   data-url="{{ absolute_url(path('frontend_label_artiste',{'slug': artiste.slug})) }}"
-						   data-hashtags="DreamMakerDistribution,{{ artiste.genre }}"
-						   data-via="Dreammaker225"
-						   data-related="delrodie,twitter" target="_blank">
-							Tweet
-						</a>
-					</div>
+
+					<br><br>
+					<div class="sharethis-inline-share-buttons"></div>
+					<br><br>
 					<div class="pull-right wow fadeInDown" style="margin-bottom: 50px;">
 						<a href="{{ absolute_url(path('frontend_label_index')) }}" title="Retour à la page du label">
 							<i class="fa fa-reply fa-2x"></i> Retour
 						</a>
 					</div>
-
+					<br>
 					<div class="post-comments">
 						<div class="title-head wow fadeInUp"></div>
 						<ul class="comment-list">
@@ -254,6 +244,7 @@
 
             return t;
         }(document, "script", "twitter-wjs"));</script>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d124f7e2d592700120c2b34&product='inline-share-buttons' async='async'></script>
 {% endblock %}
 
 

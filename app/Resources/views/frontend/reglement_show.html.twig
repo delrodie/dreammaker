@@ -14,7 +14,7 @@
 				<div class="col-md-8">
 					<div class="post-item">
 						<h2 class="wow fadeInLeft">{{ reglement.titre }}</h2>
-						<div class="post wow fadeInUp">
+						<div class="wow fadeInUp">
 							<!-- Image -->
 							<img class="img-responsive" src="{{ asset('uploads/concours/'~ reglement.imageName) | imagine_filter('page_img') }}" alt="{{ reglement.titre }}" />
 							<div class="post-content wow fadeInUp">
@@ -40,13 +40,14 @@
 										Tweet
 									</a>
 								</div>-->
-								<br><br><br>
-								<div class="col-md-12 pull-right text-right">
-									<a href="{{ path('frontend_concours_show', {'slug': reglement.concours.slug}) }}" title="Retour aux actualités"><i class="fa fa-reply"></i> Retour à la presenattion du concours</a>
-								</div>
 							</div>
 
 						</div>
+						<br>
+						<div class="col-md-12 pull-right text-right wow fadeInLeft">
+							<a href="{{ path('frontend_concours_show', {'slug': reglement.concours.slug}) }}" title="Retour aux actualités"><i class="fa fa-reply"></i> Retour à la presenation du concours</a>
+						</div>
+						<br>
 
 					</div><!-- End Post -->
 

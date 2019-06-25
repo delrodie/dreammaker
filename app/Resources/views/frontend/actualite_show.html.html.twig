@@ -21,23 +21,12 @@
 								<!-- Meta -->
 								<div class="posted-date">{{ actualite.publieLe|date('d M Y') }}</div>
 								{{ actualite.contenu|raw }}
-								<div class="share-btn">
-									<a class="fb-share-button" data-href="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}" data-layout="button_count"></a>
-									<!--<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Titre de a page" style="padding-top: 15px;" >Partager</a>-->
-									<a class="twitter-share-button"
-									   href="https://twitter.com/intent/tweet"
-									   data-size="small"
-									   data-text="{{ actualite.resume|raw }}"
-									   data-url="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}"
-									   data-hashtags="DreamMakerDistribution,{{ actualite.tags }}"
-									   data-via="Dreammaker225"
-									   data-related="delrodie,twitter" target="_blank">
-										Tweet
-									</a>
-								</div>
-								<div class="col-md-12 pull-right text-right">
-									<a href="{{ absolute_url(path('frontend_actualite_index')) }}" title="Retour aux actualités"><i class="fa fa-reply"></i> Retour aux actualités</a>
-								</div>
+								<br><br>
+								<div class="sharethis-inline-share-buttons"></div>
+							</div>
+							<p></p>
+							<div class="col-md-12 pull-right text-right">
+								<a href="{{ absolute_url(path('frontend_actualite_index')) }}" title="Retour aux actualités"><i class="fa fa-reply"></i> Retour aux actualités</a>
 							</div>
 
 						</div>
@@ -184,4 +173,5 @@
 
             return t;
         }(document, "script", "twitter-wjs"));</script>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d124f7e2d592700120c2b34&product='inline-share-buttons' async='async'></script>
 {% endblock %}

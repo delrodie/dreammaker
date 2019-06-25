@@ -3334,11 +3334,11 @@ ul,li{
 
 .blog .post{
 	background-color: #ffffff;
-    box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.1);
-	-ms-box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.1);
-	-o-box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.1);
+	-ms-box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.1);
+	-o-box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.1);
     margin-bottom: 80px;	
 }
 .blog .col-md-8 {

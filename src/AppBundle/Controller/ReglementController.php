@@ -46,7 +46,7 @@ class ReglementController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $resume = $utilities->resume($reglement->getContenu(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($reglement->getContenu()), 300, '...', true);
             $reglement->setResume($resume);
             $em->persist($reglement);
             $em->flush();
@@ -89,7 +89,7 @@ class ReglementController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $resume = $utilities->resume($reglement->getContenu(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($reglement->getContenu()), 300, '...', true);
             $reglement->setResume($resume);
             $this->getDoctrine()->getManager()->flush();
 

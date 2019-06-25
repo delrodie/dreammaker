@@ -46,7 +46,7 @@ class ActualiteController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $resume = $utilities->resume($actualite->getContenu(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($actualite->getContenu()), 300, '...', true);
             $actualite->setResume($resume);
             $em->persist($actualite);
             $em->flush();
@@ -89,7 +89,7 @@ class ActualiteController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $resume = $utilities->resume($actualite->getContenu(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($actualite->getContenu()), 300, '...', true);
             $actualite->setResume($resume);
             $this->getDoctrine()->getManager()->flush();
 

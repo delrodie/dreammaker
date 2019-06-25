@@ -46,7 +46,7 @@ class EventController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $resume = $utilities->resume($event->getContenu(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($event->getContenu()), 300, '...', true);
             $event->setResume($resume);
             $em->persist($event);
             $em->flush();
@@ -89,7 +89,7 @@ class EventController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $resume = $utilities->resume($event->getContenu(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($event->getContenu()), 300, '...', true);
             $event->setResume($resume);
             $this->getDoctrine()->getManager()->flush();
 

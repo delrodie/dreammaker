@@ -46,7 +46,7 @@ class ConcoursController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $resume = $utilities->resume($concour->getContenu(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($concour->getContenu()), 300, '...', true);
             $concour->setResume($resume);
             $em->persist($concour);
             $em->flush();
@@ -82,16 +82,18 @@ class ConcoursController extends Controller
      * @Route("/{slug}/edit", name="backend_concours_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Concours $concour)
+    public function editAction(Request $request, Concours $concour, Utilities $utilities)
     {
         $deleteForm = $this->createDeleteForm($concour);
         $editForm = $this->createForm('AppBundle\Form\ConcoursType', $concour);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $resume = $utilities->resume(strip_tags($concour->getContenu()), 300, '...', true);
+            $concour->setResume($resume);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('backend_concours_edit', array('id' => $concour->getId()));
+            return $this->redirectToRoute('backend_concours_show', array('slug' => $concour->getSlug()));
         }
 
         return $this->render('concours/edit.html.twig', array(
