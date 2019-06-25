@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Items list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Statut</th>
+                <th>Slug</th>
+                <th>Publiepar</th>
+                <th>Modifiepar</th>
+                <th>Publiele</th>
+                <th>Modifiele</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td><a href="{{ path('backend_item_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
+                <td>{{ item.titre }}</td>
+                <td>{{ item.contenu }}</td>
+                <td>{% if item.statut %}Yes{% else %}No{% endif %}</td>
+                <td>{{ item.slug }}</td>
+                <td>{{ item.publiePar }}</td>
+                <td>{{ item.modifiePar }}</td>
+                <td>{{ item.publieLe }}</td>
+                <td>{{ item.modifieLe }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('backend_item_show', { 'id': item.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('backend_item_edit', { 'id': item.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('backend_item_new') }}">Create a new item</a>
+        </li>
+    </ul>
+{% endblock %}

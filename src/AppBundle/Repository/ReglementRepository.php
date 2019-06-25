@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class ReglementRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     *
+     */
+    public function findOnly($slug)
+    {
+        return $this->createQueryBuilder('r')->where('r.slug = :slug')->setParameter('slug', $slug);
+    }
 }

@@ -47,6 +47,9 @@
                                 {{ reglement.titre }}
                             </h4>
                             <p class="card-text">{{ reglement.contenu|raw }}</p>
+                            <p class="text-right">
+                                <a href="{{ path('backend_item_new', {'reglement': reglement.slug}) }}" class="btn btn-primary">Ajouter un item</a>
+                            </p>
                         </div>
                         <!-- /.box-body -->
                     </div>
