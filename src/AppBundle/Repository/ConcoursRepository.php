@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class ConcoursRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Liste des concours
+     */
+    public function Liste()
+    {
+        return $this->createQueryBuilder('c')
+                    ->orderBy('c.titre', 'ASC')
+            ;
+    }
 }
