@@ -175,10 +175,10 @@
         <div class="auto-container clearfix">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="{{ path('frontend_concours_show', {'slug': concours.slug}) }}">
+                    <a href="{{ absolute_url(path('frontend_concours_show', {'slug': concours.slug})) }}">
                         <button class="btn btn-primary btn-lg">Presentation du concours</button>
                     </a>
-                    <a href="#">
+                    <a href="{{ absolute_url(path('frontend_concours_reglement', {'concours': concours.slug})) }}">
                         <button class="btn btn-warning btn-lg">Règlements du concours</button>
                     </a>
                 </div>
@@ -336,7 +336,7 @@
                     <a href="{{ path('frontend_concours_show', {'slug': concours.slug}) }}">
                         <button class="btn btn-primary btn-lg">Presentation du concours</button>
                     </a>
-                    <a href="#">
+                    <a href="{{ path('frontend_concours_reglement', {'concours': concours.slug}) }}">
                         <button class="btn btn-warning btn-lg">Règlements du concours</button>
                     </a>
                 </div>

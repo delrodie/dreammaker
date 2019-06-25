@@ -1,0 +1,13 @@
+<section id="qa-page">
+    <div class="auto-container">
+        <div class="clearfix">
+            {% for item in items %}
+                <div class="toggle">
+                    <h4 class="toggle-title">{{ item.titre }} <i class="fa fa-plus" aria-hidden="true"></i></h4>
+                    <div class="toggle-content">{{ item.contenu|raw }}</div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+    </div>
+</section>
