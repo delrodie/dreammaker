@@ -26,7 +26,7 @@ class ArtisteType extends AbstractType
                 'attr'=>['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>"Le pseudonyme de l'artiste"]
             ])
             ->add('biographie', TextareaType::class,[
-                'attr' =>['class'=>'form-control summernote']
+                'attr' =>['class'=>'form-control summernote', 'style' => 'width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;']
             ])
             ->add('manager', TextType::class,[
                 'attr'=>['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>"Les contacts téléphonique du manager de l'artiste"], 'required'=> false

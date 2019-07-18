@@ -1,14 +1,14 @@
 {% extends 'backend.html.twig' %}
 
-{% block title %}Gestion de la artiste{% endblock %}
+{% block title %}Gestion des artistes{% endblock %}
 
 {% block body %}
     <section class="content-header">
-        <h1>Gestion de la artiste</h1>
+        <h1>Gestion des artistes</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_artiste_index'))}}">Utilisateur</a></li>
-            <li class="breadcrumb-item active">Gestion de la artiste</li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_artiste_index'))}}">Artiste</a></li>
+            <li class="breadcrumb-item active">Modification</li>
         </ol>
     </section>
     <section class="content">
@@ -55,6 +55,13 @@
                                     <span class="help-block">{{ form_errors(form.manager)}}</span>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Ordre d'affichage</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.flag)}}
+                                    <span class="help-block">{{ form_errors(form.flag)}}</span>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-6 control-label text-left">Email</label>
@@ -92,13 +99,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-12 control-label text-left">Ordre d'affichage</label>
-                                <div class="col-sm-12">
-                                    {{ form_widget(form.flag)}}
-                                    <span class="help-block">{{ form_errors(form.flag)}}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-sm-12 control-label text-left">Telecharger l'illustration</label>
                                 <div class="col-sm-12">
                                     {{ form_widget(form.imageFile)}}
@@ -114,8 +114,8 @@
                             </div>
                             {{ form_widget(form) }}
                             <div class="box-footer">
-                                <button type="reset" class="btn btn-default">Annuler</button>
-                                <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                                <a href="{{ absolute_url(path('backend_artiste_index')) }}" class="btn btn-default">Annuler</a>
+                                <button type="submit" class="btn btn-info pull-right">Modifier</button>
                             </div>
                             {{ form_end(form) }}
                         </div>
@@ -151,9 +151,6 @@
 
     {% endjavascripts %}
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.summernote').summernote();
-        });
-    </script>
+
 {% endblock %}
+
