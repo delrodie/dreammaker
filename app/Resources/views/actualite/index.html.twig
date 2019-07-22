@@ -23,7 +23,8 @@
             <div class="row">
                 {% for actualite in actualites %}
                     <div class="col-md-12 col-lg-3">
-                        <div class="box box-default" style="height: 600px">
+                        <!--<div class="box box-default" style="height: 600px">-->
+                        <div class="box box-default">
                             <img class="card-img-top img-responsive" src="{{ vich_uploader_asset(actualite, 'imageFile') }}" alt="{{ actualite.titre }}">
                             <div class="box-body">
                                 <h4 class="card-title">

@@ -46,7 +46,7 @@ class ArtisteController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $resume = $utilities->resume($artiste->getBiographie(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($artiste->getBiographie()), 300, '...', true);
             $artiste->setResume($resume);
             $em->persist($artiste);
             $em->flush();
@@ -89,7 +89,7 @@ class ArtisteController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $resume = $utilities->resume($artiste->getBiographie(), 300, '...', true);
+            $resume = $utilities->resume(strip_tags($artiste->getBiographie()), 300, '...', true);
             $artiste->setResume($resume); //dump($artiste->getFlag());die();
             $this->getDoctrine()->getManager()->flush();
 
