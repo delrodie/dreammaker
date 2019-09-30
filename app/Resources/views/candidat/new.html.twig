@@ -1,0 +1,165 @@
+{% extends 'backend.html.twig' %}
+
+{% block title %}Gestion des candidats{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>Gestion des candidats</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend'))}}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ absolute_url(path('backend_candidat_index'))}}">candidat</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="box box-warning">
+                <div class="box-header text-right">
+                    <a href="{{ absolute_url(path('backend_candidat_index'))}}" class="btn btn-social btn-primary"><i class="fa fa-list"></i>La liste des candidats</a>
+                </div>
+                <div class="box-body">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            {{ form_start(form, {'attr':{'class':'form-horizontal'}}) }}
+
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-12 control-label text-left">Nom</label>
+                                    <div class="col-sm-12">
+                                        {{ form_widget(form.nom)}}
+                                        <span class="help-block">{{ form_errors(form.nom)}}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-12 control-label text-left">Prenoms</label>
+                                    <div class="col-sm-12">
+                                        {{ form_widget(form.prenoms)}}
+                                        <span class="help-block">{{ form_errors(form.prenoms)}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-12 control-label text-left">Pseudonyme</label>
+                                    <div class="col-sm-12">
+                                        {{ form_widget(form.pseudo)}}
+                                        <span class="help-block">{{ form_errors(form.pseudo)}}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-12 control-label text-left">Code</label>
+                                    <div class="col-sm-12">
+                                        {{ form_widget(form.code)}}
+                                        <span class="help-block">{{ form_errors(form.code)}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-12 control-label text-left">Biographie</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.biographie)}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Genre</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.genre)}}
+                                    <span class="help-block">{{ form_errors(form.genre)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Facebook</label>
+                                    {{ form_widget(form.facebook)}}
+                                    <span class="help-block">{{ form_errors(form.facebook)}}</span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Twitter</label>
+                                    {{ form_widget(form.twitter)}}
+                                    <span class="help-block">{{ form_errors(form.twitter)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Youtube</label>
+                                    {{ form_widget(form.youtube)}}
+                                    <span class="help-block">{{ form_errors(form.youtube)}}</span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-6 control-label text-left">Instagram</label>
+                                    {{ form_widget(form.instagram)}}
+                                    <span class="help-block">{{ form_errors(form.instagram)}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label text-left">Telecharger l'illustration</label>
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.imageFile)}}
+                                    <span class="help-block">{{ form_errors(form.imageFile)}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label class="col-sm-12 control-label text-left">Point Jury</label>
+                                    <div class="col-sm-12">
+                                        {{ form_widget(form.pointJury)}}
+                                        <span class="help-block">{{ form_errors(form.pointJury)}}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="col-sm-12 control-label text-left">Point Ureport</label>
+                                    <div class="col-sm-12">
+                                        {{ form_widget(form.pointUreport)}}
+                                        <span class="help-block">{{ form_errors(form.pointUreport)}}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="col-sm-12 control-label text-left">Point Facebook</label>
+                                    <div class="col-sm-12">
+                                        {{ form_widget(form.pointFacebook)}}
+                                        <span class="help-block">{{ form_errors(form.pointFacebook)}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_widget(form) }}
+                            <div class="box-footer">
+                                <a href="{{ absolute_url(path('backend_candidat_index')) }}" class="btn btn-default">Annuler</a>
+                                <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent()}}
+    {% stylesheets
+        'backoffice/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css'
+        'backoffice/tags/tagsinput.css'
+        filter='cssrewrite' output='backoffice/css/editeur.css'
+    %}
+        <link rel="stylesheet" href="{{ absolute_url(asset_url)}}" />
+    {% endstylesheets %}
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent()}}
+    {% javascripts
+        'backoffice/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js'
+        'backoffice/js/pages/editor.js'
+        'backoffice/tags/tagsinput.js'
+        output='backoffice/js/editeur.js'
+    %}
+        <script src="{{ absolute_url(asset_url)}}"></script>
+
+    {% endjavascripts %}
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
+{% endblock %}
+

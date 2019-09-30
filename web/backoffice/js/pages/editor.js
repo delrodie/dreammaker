@@ -12,6 +12,7 @@
     $('#appbundle_actualite_contenu').summernote();
     //$('#appbundle_event_contenu').wysihtml5();
     $('#appbundle_artiste_biographie').wysihtml5();
+    $('#appbundle_candidat_biographie').wysihtml5();
     $('.contenu').wysihtml5();
     $('.select2').select2()
 	
