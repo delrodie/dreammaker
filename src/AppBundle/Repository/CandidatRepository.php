@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class CandidatRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAutresCandidats($id)
+    {
+        return $this->createQueryBuilder('c')
+                    ->where('c.id <> :id')
+                    ->orderBy('c.total', 'DESC')
+                    ->addOrderBy('c.code', 'ASC')
+                    ->setParameter('id', $id)
+                    ->getQuery()->getResult()
+            ;
+    }
 }

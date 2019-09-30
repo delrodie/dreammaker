@@ -166,7 +166,23 @@
             </div>
         </div>
     </section>
-
+    <section><br>
+        <div class="auto-container clearfix">
+            <a href="{{ absolute_url(path('sdm_index')) }}" title="Cliquez pour acceder à la page de vote">
+                <img src="{{ asset('assets/img/bg2.jpg') }}" alt="" class="img-responsive">
+            </a>
+        </div>
+        <br>
+        <div class="auto-container clearfix">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a href="{{ absolute_url(path('sdm_index')) }}" title="Cliquez pour acceder à la page de vote">
+                        <button class="btn btn-danger btn-lg">Cliquez pour acceder à la page de vote</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="actualite">
         <div class="auto-container">
             {% if (actualites) %}

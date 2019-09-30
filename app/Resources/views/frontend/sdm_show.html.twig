@@ -1,0 +1,72 @@
+{% extends 'sdm_layout.html.twig' %}
+{% block body %}
+	<div class="blog-details-area ptb-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 col-12">
+					<div class="blog-details-wrap">
+						<iframe width="800" height="500" src="https://www.youtube.com/embed/{{candidat.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<h3>{{ candidat.pseudo}}</h3>
+						<ul class="meta">
+							<li>{{ candidat.total}}</li>
+							<li>{{ candidat.pourcentage}}%</li>
+						</ul>
+
+						<div class="row mb-30">
+							<div class="col-md-5 col-12">
+								<img src="{{asset('uploads/concours/'~ candidat.imageName)}}" alt="{{ candidat.pseudo }}">
+							</div>
+							<div class="col-md-7 col-12">
+								<p class="text-justify">
+									{{ candidat.biographie|raw }}
+								</p>
+							</div>
+						</div>
+						<div class="share-wrap">
+							<div class="row">
+								<div class="col-sm-7 ">
+									<ul class="socil-icon d-flex">
+										<li>Suivre l'artiste :</li>
+										{% if candidat.facebook %}
+											<li><a href="https://facebook.com/{{ candidat.facebook }}"><i class="fa fa-facebook"></i></a></li>
+										{% endif %}
+										{% if candidat.twitter %}
+											<li><a href="https://twitter.com/{{ candidat.twitter }}"><i class="fa fa-twitter"></i></a></li>
+										{% endif %}
+										{% if candidat.instagram %}
+											<li><a href="https://instagram.com/{{ candidat.instagram }}"><i class="fa fa-instagram"></i></a></li>
+										{% endif %}
+									</ul>
+								</div>
+								<div class="col-sm-5 text-right">
+									<a href="javascript:void(0);" class="btn btn-primary">Cliquez pour voter {{ candidat.pseudo }}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-lg-3 col-12">
+					<aside class="sidebar-area">
+						<div class="widget widget_recent_entries recent_post">
+							<h4 class="widget-title">Les autres candidats</h4>
+							<ul>
+								{% for candidat in candidats %}
+									<li>
+										<div class="post-img">
+											<img src="{{ asset('uploads/concours/'~ candidat.imageName) | imagine_filter('candidat_mini') }}" alt="{{ candidat.pseudo }}" title="" class="img-responsive">
+										</div>
+										<div class="post-content">
+											<a href="{{ path('sdm_show', {'slug': candidat.slug}) }}">{{ candidat.code}} : {{ candidat.pseudo }} </a>
+											<p>{{ candidat.total}}</p>
+										</div>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
