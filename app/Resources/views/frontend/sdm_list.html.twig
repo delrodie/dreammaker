@@ -48,11 +48,13 @@
 											</div>
 										</div>
 										<div class="product-content">
-											<h3><a href="#">{{ candidat.code }}</a></h3>
-											<p class="pull-left"><span style="font-size: 10px;">Vote:</span> <strong>{{ candidat.total}}</strong>
+											<h3>
+												<a href="{{ path('sdm_show', {'slug': candidat.slug}) }}">{{ candidat.code }}</a>
+												<span class="pull-right"><span style="font-size: 0.5em;">vote: </span><span style="color: blue">{{ candidat.total}}</span></span>
+											</h3>
+											<p class="pull-left">
 											</p>
 											<ul class="pull-right d-flex">
-												<li>{{ pourcentage}}%</li>
 											</ul>
 										</div>
 									</div>
