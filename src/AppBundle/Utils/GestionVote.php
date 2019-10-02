@@ -22,20 +22,23 @@ class GestionVote
 
         // Si web existe alors recuperer les autres valeurs de la table
         // sinon considerer les valeurs transmises
-        if ($web){
-            $pointFbk = $candidat->getPointFacebook()+$fbk;
+        if ($web){ //dump($web);die();
+            $pointFbk = $candidat->getPointFacebook();
             $pointWeb = $candidat->getPointWeb()+$web;
-            $pointSMS = $candidat->getPointUreport()+$sms;
-            $total = $pointFbk+$pointWeb+$pointSMS;
+            $pointSMS = $candidat->getPointUreport(); //dump($candidat);die();
+            $total = $pointFbk+$pointWeb+$pointSMS; //dump($total);die();
+            
+            $candidat->setPointWeb($pointWeb);
+            $candidat->setTotal($total);
         }else{
             $pointWeb = $candidat->getPointWeb();
             $total = $fbk+$sms+$pointWeb;
-        }
 
-        $candidat->setPointFacebook($fbk);
-        $candidat->setPointWeb($pointWeb);
-        $candidat->setPointUreport($sms);
-        $candidat->setTotal($total);
+            $candidat->setPointFacebook($fbk);
+            //$candidat->setPointWeb($pointWeb);
+            $candidat->setPointUreport($sms);
+            $candidat->setTotal($total);
+        }
         $this->em->persist($candidat);
         $this->em->flush();
 
