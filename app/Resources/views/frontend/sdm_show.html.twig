@@ -8,8 +8,7 @@
 						<iframe width="800" height="500" src="https://www.youtube.com/embed/{{candidat.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						<h3>{{ candidat.pseudo}}</h3>
 						<ul class="meta">
-							<li>{{ candidat.total}}</li>
-							<li>{{ candidat.pourcentage}}%</li>
+							<li>Votes: {{ candidat.total}}</li>
 						</ul>
 
 						<div class="row mb-30">
@@ -39,7 +38,11 @@
 									</ul>
 								</div>
 								<div class="col-sm-5 text-right">
-									<a href="javascript:void(0);" class="btn btn-primary">Cliquez pour voter {{ candidat.pseudo }}</a>
+								{% if vote %}
+									<a href="{{ path('sdm_vote', {'slug': candidat.slug}) }}" class="btn btn-primary">Cliquez pour voter {{ candidat.pseudo }}</a>
+								{% else %}
+									<a href="#" class="btn btn-danger disabled">Désolé, vous avez déja voté aujourd'hui</a>
+								{% endif %}
 								</div>
 							</div>
 						</div>

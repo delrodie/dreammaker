@@ -20,4 +20,13 @@ class CandidatRepository extends \Doctrine\ORM\EntityRepository
                     ->getQuery()->getResult()
             ;
     }
+
+    public function findList()
+    {
+        return $this->createQueryBuilder('c')
+                    ->orderBy('c.total', 'DESC')
+                    ->addOrderBy('c.code', 'ASC')
+                    ->getQuery()->getResult()
+                ;
+    }
 }

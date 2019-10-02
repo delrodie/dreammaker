@@ -5,8 +5,12 @@
 			<div class="tab-content">
 				<div class="tab-pane active" id="all">
 					<ul class="row">
+						{% set total = 0 %} {% set pourcentage = 0 %}
 						{% for candidat in candidats %}
-							{% if loop.index < 8 %}
+							{% set total = total+candidat.total %}
+							{% if total is null %} {% set total=1 %}{% endif %}
+							{% set pourcentage = (candidat.total*100)/total %}
+							{% if loop.index < 5 %}
 								<li class="col-xl-3 col-lg-4 col-sm-6 col-12">
 									<div class="product-wrap">
 										<div class="product-img">
@@ -19,11 +23,14 @@
 											</div>
 										</div>
 										<div class="product-content">
-											<h3><a href="#">{{ candidat.code }}</a></h3>
-											<p class="pull-left"><span style="font-size: 10px;">Vote:</span> <strong>{{ candidat.total}}</strong>
+											<h3>
+												<a href="{{ path('sdm_show', {'slug': candidat.slug}) }}">{{ candidat.code }}</a>
+												<span class="pull-right"><span style="font-size: 0.5em;">vote: </span><span style="color: blue">{{ candidat.total}}</span></span>
+											</h3>
+											<p class="pull-left">
 											</p>
-											<ul class="pull-right d-flex">
-												<li>{{ candidat.pourcentage}}%</li>
+											<ul class="pull-right">
+												<li></li>
 											</ul>
 										</div>
 									</div>
@@ -45,7 +52,7 @@
 											<p class="pull-left"><span style="font-size: 10px;">Vote:</span> <strong>{{ candidat.total}}</strong>
 											</p>
 											<ul class="pull-right d-flex">
-												<li>{{ candidat.pourcentage}}%</li>
+												<li>{{ pourcentage}}%</li>
 											</ul>
 										</div>
 									</div>
@@ -76,16 +83,20 @@
 						<div class="product-single-content w-50">
 							<h3>{{ candidat.pseudo}}</h3>
 							<div class="rating-wrap fix">
-								<span class="pull-left">{{ candidat.pourcentage}}</span>
+								<span class="pull-left"></span>
 								<ul class="rating pull-right d-flex">
-									<li>{{candidat.pourcentage}}%</li>
+									Vote: &nbsp;&nbsp; <li style="color: blue; font-size: 1.9em; font-weight: bold;"> {{ candidat.total}}</li>
 								</ul>
 							</div>
 							<p>
 								{{ candidat.biographie|raw}}
 							</p>
 							<ul class="input-style">
-								<li><a href="#">VOTEZ</a></li>
+								{% if vote %}
+									<li><a href="{{ path('sdm_vote', {'slug': candidat.slug}) }}">VOTEZ</a></li>
+								{% else %}
+									<li><a href="#">Ré-voter plutard</a></li>
+								{% endif %}
 								<li><a href="{{ path('sdm_show', {'slug': candidat.slug}) }}">VOIR LA VIDEO</a></li>
 							</ul>
 							<ul class="cetagory">

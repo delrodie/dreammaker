@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Candidat;
+use AppBundle\Utils\GestionVote;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -79,14 +80,18 @@ class CandidatController extends Controller
      * @Route("/{slug}/edit", name="backend_candidat_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Candidat $candidat)
+    public function editAction(Request $request, Candidat $candidat, GestionVote $gestionVote)
     {
         $deleteForm = $this->createDeleteForm($candidat);
         $editForm = $this->createForm('AppBundle\Form\CandidatType', $candidat);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $pointFbk = $candidat->getPointFacebook();
+            $pointSMS = $candidat->getPointUreport();
+            $gestionVote->vote($candidat->getSlug(),0,$pointFbk,$pointSMS);
+            //$this->getDoctrine()->getManager()->flush();
+
 
             return $this->redirectToRoute('backend_candidat_show', array('slug' => $candidat->getSlug()));
         }
