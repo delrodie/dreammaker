@@ -4,12 +4,21 @@
 		<div class="container">
 			<div class="tab-content">
 				<div class="tab-pane active" id="all">
-					<ul class="row">
-						{% set total = 0 %} {% set pourcentage = 0 %}
+					<ul class="row mb-30">
+						{% set total = 0 %} {% set fbk = 0 %} {% set web = 0 %} {% set sms = 0 %}
 						{% for candidat in candidats %}
 							{% set total = total+candidat.total %}
-							{% if total is null %} {% set total=1 %}{% endif %}
-							{% set pourcentage = (candidat.total*100)/total %}
+							{% set fbk = fbk+candidat.pointFacebook %}
+							{% set web = web+candidat.pointWeb %}
+							{% set sms = sms+candidat.pointUreport %}
+						{% endfor %}
+						<li class="col-xl-3 col-3">Total: <span style="color: blue; font-size: 1.5em">{{ total}}</span></li>
+						<li class="col-xl-3 col-3">Fbk:  <span style="color: blue; font-size: 1.3em">{{ fbk}}</span></li>
+						<li class="col-xl-3 col-3">Web:  <span style="color: blue; font-size: 1.3em">{{ web}}</span></li>
+						<li class="col-xl-3 col-3">SMS:  <span style="color: blue; font-size: 1.3em">{{ sms}}</span></li>
+					</ul>
+					<ul class="row">
+						{% for candidat in candidats %}
 							{% if loop.index < 5 %}
 								<li class="col-xl-3 col-lg-4 col-sm-6 col-12">
 									<div class="product-wrap">

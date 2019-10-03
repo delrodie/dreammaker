@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-7 col-sm-6 col-6">
 					<div class="logo">
-						<a href="#">
+						<a href="{{ path('sdm_index') }}">
 							<img src="{{ absolute_url(asset('assets/img/logo.jpg')) }}" alt="" width="85">
 						</a>
 					</div>
@@ -40,6 +40,11 @@
 							<li><a href="#">Contact</a></li>
 						</ul>
 					</nav>
+				</div>
+				<div class="col-md-4 col-lg-2 col-sm-5 col-4">
+					<ul class="search-cart-wrapper d-flex">
+						<li class="search-tigger"><a href="{{ path('sdm_refresh') }}"><i class="fa fa-refresh"></i></a></li>
+					</ul>
 				</div>
 			</div>
 		</div>

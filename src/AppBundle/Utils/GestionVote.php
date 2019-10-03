@@ -27,7 +27,7 @@ class GestionVote
             $pointWeb = $candidat->getPointWeb()+$web;
             $pointSMS = $candidat->getPointUreport(); //dump($candidat);die();
             $total = $pointFbk+$pointWeb+$pointSMS; //dump($total);die();
-            
+
             $candidat->setPointWeb($pointWeb);
             $candidat->setTotal($total);
         }else{

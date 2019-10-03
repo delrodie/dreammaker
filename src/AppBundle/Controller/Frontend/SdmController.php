@@ -77,4 +77,14 @@ class SdmController extends Controller
         return $this->redirectToRoute("sdm_show",['slug'=>$candidat->getSlug()]);
 
     }
+
+    /**
+     * @Route("/refresh/", name="sdm_refresh")
+     */
+    public function refreshAction()
+    {
+        $session = new Session();
+        $session->remove('vote');
+        return $this->redirectToRoute('sdm_index');
+    }
 }
