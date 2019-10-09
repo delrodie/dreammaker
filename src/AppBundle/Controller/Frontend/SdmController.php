@@ -87,4 +87,23 @@ class SdmController extends Controller
         $session->remove('vote');
         return $this->redirectToRoute('sdm_index');
     }
+
+    /**
+     * @Route("/vote/{slug}/100", name="sdm_vote_100")
+     * @Method("GET")
+     */
+    public function vote100Action($slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $candidat = $em->getRepository("AppBundle:Candidat")->findOneBy(['slug'=>$slug]);
+        if ($candidat){
+            $candidat->setPointWeb($candidat->getPointWeb()+100);
+            $candidat->setTotal($candidat->getTotal()+100);
+            $em->persist($candidat);
+            $em->flush();
+            return $this->redirectToRoute('sdm_index');
+        }else{
+            return $this->redirectToRoute('homepage');
+        }
+    }
 }
