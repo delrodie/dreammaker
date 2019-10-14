@@ -65,6 +65,7 @@ class SdmController extends Controller
      */
     public function voteAction(Candidat $candidat, GestionVote $gestionVote)
     {
+        return $this->redirectToRoute("sdm_index");
         $session = new Session();
 
         // S'il n'y a pas de session alors ajout de vote au candidat concerné et creation de session
