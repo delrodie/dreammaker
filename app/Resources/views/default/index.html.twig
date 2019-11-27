@@ -176,7 +176,7 @@
             {% endif %}
             <div class="swiper-container">
                 <div class="swiper-wrapper articles">
-                    {% for actualite in actualites %}
+                    {% for actualite in actualites|slice(0,4) %}
                         {% if (loop.index is divisibleby(2)) %}
                             <div class="swiper-slide wow fadeInDown">
                                 <div class="row">
@@ -302,6 +302,60 @@
                 </div>
                 <div class="lire-suite text-right">
                     <h3><a href="{{ absolute_url(path('frontend_label_index')) }}" >&raquo; Voir tous les artistes</a></h3>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if (actualites) %}
+        <section class="actualite">
+            <div class="auto-container">
+                <div class="titre-section">
+                    <h2>Il para&icirc;t que...</h2>
+                </div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper articles">
+                        {% for actualite in buzzs %}
+                            {% if (loop.index is divisibleby(2)) %}
+                                <div class="swiper-slide wow fadeInDown">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a href="{{ absolute_url(path('frontend_buzz_show',{'slug': actualite.slug})) }}">
+                                                <!--<img src="{{ vich_uploader_asset(actualite, 'imageFile') }}" alt="">-->
+                                                <img src="{{ asset('uploads/buzz/'~ actualite.imageName) | imagine_filter('actualite_accueil') }}" alt="{{ actualite.titre }}"  class="img-responsive"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4><a href="{{ absolute_url(path('frontend_buzz_show',{'slug': actualite.slug})) }}">{{ actualite.titre }}</a></h4>
+                                            <p class="text">
+                                                {{ actualite.resume|raw }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="swiper-slide wow fadeInLeft">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a href="{{ absolute_url(path('frontend_buzz_show',{'slug': actualite.slug})) }}">
+                                                <img src="{{ asset('uploads/buzz/'~ actualite.imageName) | imagine_filter('actualite_accueil') }}" alt="{{ actualite.titre }}"  class="img-responsive"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4><a href="{{ absolute_url(path('frontend_actualite_show',{'slug': actualite.slug})) }}">{{ actualite.titre }}</a></h4>
+                                            <p class="text">
+                                                {{ actualite.resume|raw }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </section>
