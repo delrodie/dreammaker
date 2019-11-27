@@ -142,12 +142,13 @@
 
                 <div class="navbar-collapse collapse clearfix">
                     <ul class="nav navbar-nav navbar-right">
-                        <li{% if (current_menu == 'accueil') %} class="current"{% endif %}><a href="{{ absolute_url(path('homepage')) }}">Accueil</a></li>
+                        <li{% if (current_menu == 'accueil') %} class="current"{% endif %}><a href="{{ absolute_url(path('homepage')) }}"><i class="fa fa-home"></i></a></li>
                         <li{% if (current_menu == 'actualite') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_actualite_index')) }}">Actualités</a></li>
                         <li{% if (current_menu == 'presentation') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_presentation_index')) }}">Qui sommes-nous?</a></li>
                         <li{% if (current_menu == 'label') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_label_index')) }}">Notre label</a></li>
-                        <li{% if (current_menu == 'event') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_event_index')) }}">Events</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li{% if (current_menu == 'event') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_event_index')) }}">Buzz</a></li>
+                        <li{% if (current_menu == 'event') %} class="current"{% endif %}><a href="{{ absolute_url(path('frontend_event_index')) }}">Event</a></li>
+                        <li><a href="#contact">Contact</a></li>
                         <!--<li><a href="#">Concours</a></li>-->
                     </ul>
                     <div class="clearfix"></div>
@@ -218,7 +219,7 @@
 
 
                     <!--Contact-->
-                    <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="col-md-3 col-sm-6 col-xs-12" id="contact">
                         <div class="footer-widget contact wow fadeInUp" data-wow-delay="2s" data-wow-duration="1s" data-wow-offset="0">
                             <h2>Nous contacter</h2>
                             <ul>
